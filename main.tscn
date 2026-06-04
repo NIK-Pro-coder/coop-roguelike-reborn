@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbda4h7u3rerl"]
 
 [ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://m5c1kwwxoqar" path="res://Enemies/BaseEnemy/base_enemy.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node" unique_id=1014945260]
 
@@ -11,3 +12,9 @@ position = Vector2(32, 248)
 position = Vector2(544, 344)
 collision_layer = 2
 device = 0
+
+[node name="BaseEnemy" parent="." unique_id=1686810503 instance=ExtResource("2_0xm2m")]
+position = Vector2(544, 200)
+
+[node name="BaseEnemy2" parent="." unique_id=1289808806 instance=ExtResource("2_0xm2m")]
+position = Vector2(24, 104)

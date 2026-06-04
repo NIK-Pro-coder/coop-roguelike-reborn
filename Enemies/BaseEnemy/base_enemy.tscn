@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://m5c1kwwxoqar"]
 
 [ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="1_1ik2b"]
+[ext_resource type="Script" uid="uid://bdmjqu23lmdh" path="res://Enemies/BaseEnemy/base_enemy.gd" id="1_i5m5u"]
+[ext_resource type="Script" uid="uid://dqi86iea56asx" path="res://StateMachine/state_machine.gd" id="2_wg550"]
+[ext_resource type="Script" uid="uid://bm35bt0prpugp" path="res://StateMachine/States/follow_state.gd" id="4_jsne5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wg550"]
 size = Vector2(32, 32)
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=1686810503]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_i5m5u")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=789758193]
 modulate = Color(1, 0, 0, 1)
@@ -15,3 +21,12 @@ texture = ExtResource("1_1ik2b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=401774984]
 shape = SubResource("RectangleShape2D_wg550")
 debug_color = Color(0.6651851, 0, 0, 0.42000002)
+
+[node name="StateMachine" type="Node" parent="." unique_id=527699795 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_wg550")
+initial_state = NodePath("Follow")
+metadata/_custom_type_script = "uid://dqi86iea56asx"
+
+[node name="Follow" type="Node" parent="StateMachine" unique_id=1359509179]
+script = ExtResource("4_jsne5")
+metadata/_custom_type_script = "uid://bm35bt0prpugp"

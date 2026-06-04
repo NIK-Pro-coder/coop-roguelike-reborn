@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 MultiInput="*uid://d0bidjj2yetwx"
 
+[global_group]
+
+player="Group for all players"
+
 [input]
 
 up={
