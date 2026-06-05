@@ -1,19 +1,19 @@
 extends State
 class_name FollowState
 
-var target: Player
+@export var speed: float = 200.0
+@export var target_dist: float = 100.0
 
 func enter(enemy: Enemy) -> void:
-  var dist: float = -1.0
-  
-  for i in get_tree().get_nodes_in_group("player"):
-    var d: float = (i as Player).global_position.distance_squared_to(enemy.global_position)
-    
-    if d < dist or dist < 0.0:
-      dist = d
-      target = i
+  enemy.grab_target()
 
 func update(delta: float, enemy: Enemy) -> void:
-  var move_dir: Vector2 = (target.global_position - enemy.global_position).normalized()
+  var diff: Vector2 = (enemy.target.global_position - enemy.global_position)
+  if diff.length_squared() <= target_dist * target_dist:
+    transition("attack")
+    enemy.velocity = Vector2()
+    return
   
-  enemy.velocity = move_dir * enemy.speed * delta * 60
+  var move_dir: Vector2 = diff.normalized()
+  
+  enemy.velocity = move_dir * speed * delta * 60

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bdmjqu23lmdh" path="res://Enemies/BaseEnemy/base_enemy.gd" id="1_i5m5u"]
 [ext_resource type="Script" uid="uid://dqi86iea56asx" path="res://StateMachine/state_machine.gd" id="2_wg550"]
 [ext_resource type="Script" uid="uid://bm35bt0prpugp" path="res://StateMachine/States/follow_state.gd" id="4_jsne5"]
+[ext_resource type="Script" uid="uid://dve227ngbfwp4" path="res://StateMachine/States/attack_state.gd" id="5_8kltk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wg550"]
 size = Vector2(32, 32)
@@ -30,3 +31,7 @@ metadata/_custom_type_script = "uid://dqi86iea56asx"
 [node name="Follow" type="Node" parent="StateMachine" unique_id=1359509179]
 script = ExtResource("4_jsne5")
 metadata/_custom_type_script = "uid://bm35bt0prpugp"
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1019162841]
+script = ExtResource("5_8kltk")
+metadata/_custom_type_script = "uid://dve227ngbfwp4"
