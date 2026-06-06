@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ntmi"]
 size = Vector2(32, 32)
 
-[node name="Player" type="CharacterBody2D" unique_id=1584554355]
+[node name="Player" type="CharacterBody2D" unique_id=1584554355 groups=["player"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_4ntmi")
 
@@ -16,3 +17,4 @@ texture = ExtResource("1_l8h54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=905933297]
 shape = SubResource("RectangleShape2D_4ntmi")
+debug_color = Color(0, 0.58383155, 0.6651851, 0.42000002)
