@@ -10,7 +10,6 @@ position = Vector2(32, 248)
 
 [node name="Player2" parent="." unique_id=2012870122 instance=ExtResource("1_ig7tw")]
 position = Vector2(544, 344)
-collision_layer = 2
 device = 0
 
 [node name="BaseEnemy" parent="." unique_id=1686810503 instance=ExtResource("2_0xm2m")]
