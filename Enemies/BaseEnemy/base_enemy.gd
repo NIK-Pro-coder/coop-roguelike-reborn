@@ -10,7 +10,7 @@ var speed: float = 200.0
 
 func grab_target() -> void:
   var dist: float = -1.0
- 
+  
   for i in get_tree().get_nodes_in_group("player"):
     var d: float = (i as Player).global_position.distance_squared_to(global_position)
     
