@@ -35,3 +35,12 @@ metadata/_custom_type_script = "uid://bm35bt0prpugp"
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1019162841]
 script = ExtResource("5_8kltk")
 metadata/_custom_type_script = "uid://dve227ngbfwp4"
+
+[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=96857620]
+unique_name_in_owner = true
+avoidance_enabled = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]

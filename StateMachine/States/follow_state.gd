@@ -7,13 +7,11 @@ class_name FollowState
 func enter(enemy: Enemy) -> void:
   enemy.grab_target()
 
-func update(delta: float, enemy: Enemy) -> void:
+func update(_delta: float, enemy: Enemy) -> void:
   var diff: Vector2 = (enemy.target.global_position - enemy.global_position)
   if diff.length_squared() <= target_dist * target_dist:
     transition("attack")
     enemy.velocity = Vector2()
     return
   
-  var move_dir: Vector2 = diff.normalized()
-  
-  enemy.velocity = move_dir * speed * delta * 60
+  enemy.move_position = enemy.target.global_position
