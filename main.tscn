@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://m5c1kwwxoqar" path="res://Enemies/BaseEnemy/base_enemy.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://bwbohng3o31jq" path="res://Hitbox/projectile.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cpos4rlickkye" path="res://Hitbox/hitbox.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cvb3spfna5gpm" path="res://Hitbox/hurtbox.gd" id="4_1bvp3"]
 
 [node name="Main" type="Node" unique_id=1014945260]
 
@@ -19,10 +20,18 @@ position = Vector2(544, 200)
 [node name="BaseEnemy2" parent="." unique_id=1289808806 instance=ExtResource("2_0xm2m")]
 position = Vector2(24, 104)
 
-[node name="Projectile" type="CharacterBody2D" parent="." unique_id=1904832707]
-position = Vector2(336, 88)
+[node name="Hitbox" type="Area2D" parent="." unique_id=55952183]
+position = Vector2(544, 120)
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("3_h2yge")
-dir = Vector2(-0.33499062, 0.94222146)
-speed = 236.905
-size = Vector2(57.88, 20)
-metadata/_custom_type_script = "uid://bwbohng3o31jq"
+iframe_group = "6789387038929"
+metadata/_custom_type_script = "uid://cpos4rlickkye"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=286958923]
+position = Vector2(528, 120)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_1bvp3")
+team = 4
+metadata/_custom_type_script = "uid://cvb3spfna5gpm"
