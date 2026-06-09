@@ -1,37 +1,25 @@
-[gd_scene format=3 uid="uid://bbda4h7u3rerl"]
+[gd_scene format=4 uid="uid://bbda4h7u3rerl"]
 
 [ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://m5c1kwwxoqar" path="res://Enemies/BaseEnemy/base_enemy.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://cpos4rlickkye" path="res://Hitbox/hitbox.gd" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://cvb3spfna5gpm" path="res://Hitbox/hurtbox.gd" id="4_1bvp3"]
+[ext_resource type="TileSet" uid="uid://c2jce6753fhst" path="res://main_tileset.tres" id="3_h2yge"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
+vertices = PackedVector2Array(346, 266, 346, 118, 1015.3125, -110.34375, 1148.3828, 797.7031, -141.71875, -157.57031, 294, 118, 294, 134, 262, 134, 262, 150, 246, 150, -118.24219, 766.22656, 246, 282, 262, 282, 262, 298, 278, 298, 278, 314, 314, 314, 314, 298, 330, 298, 330, 266)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(5, 6, 7, 4), PackedInt32Array(7, 8, 9, 4), PackedInt32Array(10, 4, 9, 11), PackedInt32Array(11, 12, 13, 10), PackedInt32Array(13, 14, 15, 10), PackedInt32Array(3, 10, 15, 16), PackedInt32Array(16, 17, 18, 3), PackedInt32Array(0, 3, 18, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1024, -120, -152, -168, -128, 776, 1160, 808)])
 
 [node name="Main" type="Node" unique_id=1014945260]
 
 [node name="Player" parent="." unique_id=1584554355 instance=ExtResource("1_ig7tw")]
 position = Vector2(32, 248)
 
-[node name="Player2" parent="." unique_id=2012870122 instance=ExtResource("1_ig7tw")]
-position = Vector2(544, 344)
-device = 0
-
 [node name="BaseEnemy" parent="." unique_id=1686810503 instance=ExtResource("2_0xm2m")]
 position = Vector2(544, 200)
 
-[node name="BaseEnemy2" parent="." unique_id=1289808806 instance=ExtResource("2_0xm2m")]
-position = Vector2(24, 104)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=637748730]
+navigation_polygon = SubResource("NavigationPolygon_h2yge")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=55952183]
-position = Vector2(544, 120)
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("3_h2yge")
-iframe_group = "6789387038929"
-metadata/_custom_type_script = "uid://cpos4rlickkye"
-
-[node name="Hurtbox" type="Area2D" parent="." unique_id=286958923]
-position = Vector2(528, 120)
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("4_1bvp3")
-team = 4
-metadata/_custom_type_script = "uid://cvb3spfna5gpm"
+[node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" unique_id=1782479879]
+tile_map_data = PackedByteArray("AAAQABAAAAABAAUAAAAQAA8AAAADAAYAAAAQAA4AAAAGAAcAAAAQAA0AAAABAAYAAAAQAAwAAAAGAAMAAAAQAAsAAAAAAAQAAAAQAAoAAAAHAAUAAAARAAoAAAAEAAIAAAARAAkAAAAEAAUAAAASAAkAAAAGAAUAAAATAAkAAAAEAAAAAAATAAgAAAAFAAAAAAAUAAgAAAABAAIAAAAUAAkAAAAGAAMAAAAUAAoAAAAEAAAAAAAUAAsAAAADAAUAAAAUAAwAAAAGAAIAAAAUAA0AAAACAAcAAAAUAA4AAAACAAYAAAAUAA8AAAAHAAcAAAATAA8AAAACAAMAAAATABAAAAAFAAQAAAASABAAAAACAAEAAAASABEAAAAHAAQAAAARABEAAAAHAAUAAAARABAAAAAGAAEAAAARAA0AAAAFAAMAAAARAA4AAAAHAAcAAAARAA8AAAAEAAEAAAASAA4AAAAHAAAAAAASAA8AAAAEAAAAAAASAA0AAAAGAAYAAAASAAwAAAAGAAAAAAATAA0AAAABAAEAAAATAAwAAAAHAAEAAAATAAsAAAABAAMAAAASAAsAAAADAAQAAAARAAsAAAADAAEAAAARAAwAAAAEAAQAAAASAAoAAAABAAMAAAATAAoAAAABAAMAAAATAA4AAAAGAAIAAAASABIAAAABAAEAAAATABEAAAAAAAEAAAA=")
+tile_set = ExtResource("3_h2yge")
