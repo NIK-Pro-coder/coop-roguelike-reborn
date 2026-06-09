@@ -6,6 +6,8 @@ class_name AttackState
 var attack_cooldown: float = 1.5
 
 func update(delta: float, enemy: Enemy) -> void:
+  enemy.move_position = enemy.global_position
+    
   var diff: Vector2 = (enemy.global_position - enemy.target.global_position)
   
   if diff.length_squared() > max_dist * max_dist:

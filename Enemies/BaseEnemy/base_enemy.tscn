@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://bm35bt0prpugp" path="res://StateMachine/States/follow_state.gd" id="4_jsne5"]
 [ext_resource type="Script" uid="uid://dve227ngbfwp4" path="res://StateMachine/States/attack_state.gd" id="5_8kltk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wg550"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8kltk"]
+radius = 16.0
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=1686810503]
 collision_layer = 4
@@ -20,7 +20,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_1ik2b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=401774984]
-shape = SubResource("RectangleShape2D_wg550")
+shape = SubResource("CircleShape2D_8kltk")
 debug_color = Color(0.6651851, 0, 0, 0.42000002)
 
 [node name="StateMachine" type="Node" parent="." unique_id=527699795 node_paths=PackedStringArray("initial_state")]
@@ -35,3 +35,14 @@ metadata/_custom_type_script = "uid://bm35bt0prpugp"
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1019162841]
 script = ExtResource("5_8kltk")
 metadata/_custom_type_script = "uid://dve227ngbfwp4"
+
+[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=96857620]
+unique_name_in_owner = true
+avoidance_enabled = true
+radius = 16.0
+neighbor_distance = 1000.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
