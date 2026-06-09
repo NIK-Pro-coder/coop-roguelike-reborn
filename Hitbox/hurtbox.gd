@@ -38,4 +38,3 @@ func hit(hitbox: Hitbox) -> void:
   
   iframes[hitbox.iframe_group] = hitbox.iframe_length
   got_hit.emit(hitbox)
-  print(hitbox)
