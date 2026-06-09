@@ -5,9 +5,10 @@
 [ext_resource type="TileSet" uid="uid://c2jce6753fhst" path="res://main_tileset.tres" id="3_h2yge"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
-vertices = PackedVector2Array(346, 266, 346, 118, 1015.3125, -110.34375, 1148.3828, 797.7031, -141.71875, -157.57031, 294, 118, 294, 134, 262, 134, 262, 150, 246, 150, -118.24219, 766.22656, 246, 282, 262, 282, 262, 298, 278, 298, 278, 314, 314, 314, 314, 298, 330, 298, 330, 266)
+vertices = PackedVector2Array(360, 280, 360, 104, 1003.1328, -96.828125, 1132.1172, 783.2969, -127.35156, -142.96875, 280, 104, 280, 120, 248, 120, 248, 136, 232, 136, -104.578125, 752.5703, 232, 296, 248, 296, 248, 312, 264, 312, 264, 328, 328, 328, 328, 312, 344, 312, 344, 280)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(5, 6, 7, 4), PackedInt32Array(7, 8, 9, 4), PackedInt32Array(10, 4, 9, 11), PackedInt32Array(11, 12, 13, 10), PackedInt32Array(13, 14, 15, 10), PackedInt32Array(3, 10, 15, 16), PackedInt32Array(16, 17, 18, 3), PackedInt32Array(0, 3, 18, 19)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1024, -120, -152, -168, -128, 776, 1160, 808)])
+agent_radius = 16.0
 
 [node name="Main" type="Node" unique_id=1014945260]
 
@@ -16,6 +17,21 @@ position = Vector2(32, 248)
 
 [node name="BaseEnemy" parent="." unique_id=1686810503 instance=ExtResource("2_0xm2m")]
 position = Vector2(544, 200)
+
+[node name="BaseEnemy2" parent="." unique_id=54283226 instance=ExtResource("2_0xm2m")]
+position = Vector2(584, 232)
+
+[node name="BaseEnemy3" parent="." unique_id=1503297345 instance=ExtResource("2_0xm2m")]
+position = Vector2(616, 192)
+
+[node name="BaseEnemy4" parent="." unique_id=770515727 instance=ExtResource("2_0xm2m")]
+position = Vector2(504, 240)
+
+[node name="BaseEnemy5" parent="." unique_id=992091137 instance=ExtResource("2_0xm2m")]
+position = Vector2(552, 160)
+
+[node name="BaseEnemy6" parent="." unique_id=2092161712 instance=ExtResource("2_0xm2m")]
+position = Vector2(664, 208)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=637748730]
 navigation_polygon = SubResource("NavigationPolygon_h2yge")

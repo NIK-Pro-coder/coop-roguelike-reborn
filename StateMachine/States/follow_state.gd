@@ -11,7 +11,7 @@ func update(_delta: float, enemy: Enemy) -> void:
   var diff: Vector2 = (enemy.target.global_position - enemy.global_position)
   if diff.length_squared() <= target_dist * target_dist:
     transition("attack")
-    enemy.velocity = Vector2()
+    enemy.move_position = enemy.global_position
     return
   
   enemy.move_position = enemy.target.global_position
