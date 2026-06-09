@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://m5c1kwwxoqar" path="res://Enemies/BaseEnemy/base_enemy.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bwbohng3o31jq" path="res://Hitbox/projectile.gd" id="3_h2yge"]
 
 [node name="Main" type="Node" unique_id=1014945260]
 
@@ -17,3 +18,11 @@ position = Vector2(544, 200)
 
 [node name="BaseEnemy2" parent="." unique_id=1289808806 instance=ExtResource("2_0xm2m")]
 position = Vector2(24, 104)
+
+[node name="Projectile" type="CharacterBody2D" parent="." unique_id=1904832707]
+position = Vector2(336, 88)
+script = ExtResource("3_h2yge")
+dir = Vector2(-0.33499062, 0.94222146)
+speed = 236.905
+size = Vector2(57.88, 20)
+metadata/_custom_type_script = "uid://bwbohng3o31jq"
