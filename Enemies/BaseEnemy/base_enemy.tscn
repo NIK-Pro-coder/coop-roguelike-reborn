@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8kltk"]
 radius = 16.0
 
-[node name="BaseEnemy" type="CharacterBody2D" unique_id=1686810503]
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1686810503 groups=["enemies"]]
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_i5m5u")

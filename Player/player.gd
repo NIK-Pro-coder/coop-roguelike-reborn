@@ -101,6 +101,43 @@ func handle_spells(delta: float) -> void:
   else :
     cycled = false
 
+  if spell_cd[spells[sel_spell]] > 0.0:
+    return
+  
+  var cast: bool = false
+  var dir: Vector2 = Vector2(0, 0)
+  
+  if device < 0 :
+    cast = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+    dir = (get_global_mouse_position() - global_position).normalized()
+  else :
+    dir = Vector2(
+      Input.get_joy_axis(device, JOY_AXIS_RIGHT_X),
+      Input.get_joy_axis(device, JOY_AXIS_RIGHT_Y)
+    )
+    if abs(dir.x) < 0.01:
+      dir.x = 0
+    if abs(dir.y) < 0.01:
+      dir.y = 0
+    
+    cast = dir.length_squared() > 0
+
+  if cast :
+    var s: Spell = spells[sel_spell]
+    
+    if s.target == Spell.Targets.Enemies:
+      var d: float = -1.0
+      
+      for i: Enemy in get_tree().get_nodes_in_group("enemies"):
+        var diff: Vector2 = (i.global_position - global_position)
+        
+        if dir.dot(diff.normalized()) >= .9 and (d < 0.0 or diff.length_squared() < d):
+          d = diff.length_squared()
+          dir = diff.normalized()
+    
+    s.cast(self, dir)
+    spell_cd[s] = s.cooldown
+  
 func _physics_process(delta: float) -> void:
   handle_move(delta)
   handle_roll(delta)

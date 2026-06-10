@@ -34,7 +34,6 @@ color_ramp = SubResource("GradientTexture1D_u2je5")
 [node name="fireball" type="CharacterBody2D" unique_id=1160919186]
 position = Vector2(16, 16)
 script = ExtResource("1_u2je5")
-speed = 100.0
 size = Vector2(16, 16)
 metadata/_custom_type_script = "uid://bwbohng3o31jq"
 
