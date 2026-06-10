@@ -8,7 +8,7 @@ var states: Dictionary[String, State] = {}
 var current_state: State
 
 func _ready() -> void:
-  for i in get_children():
+  for i: Node in get_children():
     if i is State:
       states[i.name.to_lower()] = i
       i.transition_to.connect(transition_to)

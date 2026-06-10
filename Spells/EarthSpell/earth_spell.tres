@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://dkguie5eowtw4"]
+
+[ext_resource type="Script" uid="uid://deeokg0jf854b" path="res://Spells/base_spell.gd" id="1_jgjc7"]
+
+[resource]
+script = ExtResource("1_jgjc7")
+name = "Earth Spell"
+desc = "Earth"
+metadata/_custom_type_script = "uid://deeokg0jf854b"

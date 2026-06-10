@@ -22,7 +22,7 @@ func _ready() -> void:
   add_child(shape)
 
 func _process(delta: float) -> void:
-  for i in iframes:
+  for i: String in iframes:
     iframes[i] -= delta
     if iframes[i] <= 0.0:
       iframes.erase(i)

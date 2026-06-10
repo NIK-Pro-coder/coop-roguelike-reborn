@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var anim: AnimationPlayer = %Anim
+@onready var spell_selected_txt: RichTextLabel = %SpellSelectedTxt
+
 #region MulitInput warppers
 
 func get_action_strength(action_name: String) -> float:
@@ -26,6 +29,17 @@ var roll_duration: float = .25
 var roll_cooldown: float = .15
 
 #endregion
+
+func _ready() -> void:
+  var new_sp: Array[Spell] = []
+  for i: Spell in spells:
+    var s: Spell = i.duplicate()
+    
+    new_sp.append(s)
+    spell_cd[s] = 0.0
+
+  spells.clear()
+  spells = new_sp
 
 var last_move_dir: Vector2
 
@@ -68,8 +82,28 @@ func handle_roll(delta: float) -> void:
 
   velocity = last_move_dir * speed * 2.5 * delta * 60
 
+@export var spells: Array[Spell] = []
+var spell_cd: Dictionary[Spell, float] = {}
+var sel_spell: int = 0
+var cycled: bool = false
+
+func handle_spells(delta: float) -> void:
+  for i: Spell in spell_cd:
+    spell_cd[i] = max(0.0, spell_cd[i] - delta)
+  
+  if is_action_pressed("cycle_spell") :
+    if !cycled :
+      sel_spell = (sel_spell + 1) % len(spells)
+      spell_selected_txt.text = "Selected '%s'" % [spells[sel_spell].name]
+      anim.stop()
+      anim.play("show_select")
+    cycled = true
+  else :
+    cycled = false
+
 func _physics_process(delta: float) -> void:
   handle_move(delta)
   handle_roll(delta)
+  handle_spells(delta)
   
   move_and_slide()
