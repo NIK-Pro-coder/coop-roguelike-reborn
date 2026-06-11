@@ -13,7 +13,7 @@ class_name Projectile
 
 @export var lifetime: float = -1.0
 
-@export var piercing: int = 3
+@export var piercing: int = -1
 var pierced: int = 0
 
 var hitbox: Hitbox
@@ -22,7 +22,8 @@ func _ready() -> void:
   hitbox = Hitbox.new()
   add_child(hitbox)
   hitbox.hit.connect(func(what: Hurtbox) -> void:
-    pierced += 1
+    if piercing >= 0:
+      pierced += 1
     if pierced > piercing:
       expire()
     hit_enemy(what)
@@ -33,7 +34,10 @@ func _ready() -> void:
   
   var timer: Timer = Timer.new()
   timer.autostart = true
+  timer.wait_time = lifetime
   timer.timeout.connect(expire)
+
+  add_child(timer)
 
 @warning_ignore("unused_parameter")
 func hit_enemy(box: Hurtbox) -> void:
