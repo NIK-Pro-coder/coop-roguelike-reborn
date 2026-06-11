@@ -126,13 +126,14 @@ func handle_spells(delta: float) -> void:
     var s: Spell = spells[sel_spell]
     
     if s.target == Spell.Targets.Enemies:
-      var d: float = -1.0
+      var max_dot: float = -1.0
       
       for i: Enemy in get_tree().get_nodes_in_group("enemies"):
         var diff: Vector2 = (i.global_position - global_position)
+        var dot: float = dir.dot(diff.normalized())
         
-        if dir.dot(diff.normalized()) >= .9 and (d < 0.0 or diff.length_squared() < d):
-          d = diff.length_squared()
+        if dot >= .9 and dot > max_dot:
+          max_dot = dot
           dir = diff.normalized()
     
     s.cast(self, dir)
