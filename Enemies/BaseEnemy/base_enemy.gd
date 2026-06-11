@@ -48,3 +48,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
   target_vel = safe_velocity * move_delta * 16.0
+
+func died() -> void:
+  queue_free()

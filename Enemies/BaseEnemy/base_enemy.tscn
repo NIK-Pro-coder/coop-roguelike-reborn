@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bm35bt0prpugp" path="res://StateMachine/States/follow_state.gd" id="4_jsne5"]
 [ext_resource type="Script" uid="uid://dve227ngbfwp4" path="res://StateMachine/States/attack_state.gd" id="5_8kltk"]
 [ext_resource type="Script" uid="uid://cvb3spfna5gpm" path="res://Hitbox/hurtbox.gd" id="6_6r630"]
+[ext_resource type="Script" uid="uid://bpbk0fsb4o1i3" path="res://Components/Health/hp_comp.gd" id="7_oojbt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8kltk"]
 radius = 16.0
@@ -54,4 +55,9 @@ size = Vector2(32, 32)
 team = 4
 metadata/_custom_type_script = "uid://cvb3spfna5gpm"
 
+[node name="HpComp" type="Node" parent="." unique_id=614720155]
+script = ExtResource("7_oojbt")
+metadata/_custom_type_script = "uid://bpbk0fsb4o1i3"
+
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
+[connection signal="died" from="HpComp" to="." method="died"]
