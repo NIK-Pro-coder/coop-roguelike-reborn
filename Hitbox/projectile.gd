@@ -13,13 +13,15 @@ class_name Projectile
 
 @export var lifetime: float = -1.0
 
+@export var damage: float = 10.0
 @export var piercing: int = -1
 var pierced: int = 0
 
-var hitbox: Hitbox
+var hitbox: DmgHitbox
 
 func _ready() -> void:
-  hitbox = Hitbox.new()
+  hitbox = DmgHitbox.new()
+  hitbox.damage = damage
   add_child(hitbox)
   hitbox.hit.connect(func(what: Hurtbox) -> void:
     if piercing >= 0:

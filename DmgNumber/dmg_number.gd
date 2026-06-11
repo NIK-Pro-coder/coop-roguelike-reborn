@@ -8,6 +8,8 @@ var time: Timer
 var start_y: float = 0.0
 
 func _ready() -> void:
+  z_index = 100
+  
   global_position += Vector2(
     randf_range(-1.0, 1.0),
     randf_range(-1.0, 1.0)
@@ -29,8 +31,6 @@ func _ready() -> void:
   add_theme_constant_override("outline_size", 3)
   
   var lifetime: float = clamp(abs(damage) / 100, .2, 2)
-  
-  print(text)
   
   time = Timer.new()
   time.autostart = true

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxs8c64gm6v7"]
 
-[ext_resource type="Script" uid="uid://cpos4rlickkye" path="res://Hitbox/hitbox.gd" id="1_jfces"]
+[ext_resource type="Script" uid="uid://bqav7ajuapjsp" path="res://Hitbox/dmg_hitbox.gd" id="1_jfces"]
 
 [sub_resource type="Curve" id="Curve_gwp1p"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9633265, 0.0, 0, 0]
@@ -157,13 +157,14 @@ _data = {
 &"explode": SubResource("Animation_nl3hs")
 }
 
-[node name="fireball_explosion" type="Area2D" unique_id=690701815]
+[node name="fireball_explosion" type="Area2D" unique_id=1285609351]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_jfces")
+damage = 25.0
 size = Vector2(48, 48)
 iframe_group = "3739792512111"
-metadata/_custom_type_script = "uid://cpos4rlickkye"
+metadata/_custom_type_script = "uid://bqav7ajuapjsp"
 
 [node name="fire" type="GPUParticles2D" parent="." unique_id=2051039496]
 z_index = 1
