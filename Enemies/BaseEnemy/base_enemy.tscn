@@ -55,9 +55,19 @@ size = Vector2(32, 32)
 team = 4
 metadata/_custom_type_script = "uid://cvb3spfna5gpm"
 
-[node name="HpComp" type="Node" parent="." unique_id=614720155]
+[node name="HpComp" type="Node" parent="." unique_id=614720155 node_paths=PackedStringArray("hp_bar")]
 script = ExtResource("7_oojbt")
+use_hp_bar = true
+hp_bar = NodePath("../HpBar")
 metadata/_custom_type_script = "uid://bpbk0fsb4o1i3"
+
+[node name="HpBar" type="ProgressBar" parent="." unique_id=1489051753]
+offset_left = -16.0
+offset_top = 20.0
+offset_right = 16.0
+offset_bottom = 24.0
+value = 100.0
+show_percentage = false
 
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="died" from="HpComp" to="." method="died"]
