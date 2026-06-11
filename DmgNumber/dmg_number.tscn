@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://b35dt1e05wf43"]
-
-[node name="DmgNumber" type="RichTextLabel" unique_id=1050451478]
-offset_right = 40.0
-offset_bottom = 40.0

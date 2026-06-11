@@ -1,5 +1,7 @@
 extends Node
 
+var main_theme: Theme = load("uid://dlrj8hj0dxq8r")
+
 func find_with_criteria(from: Node, criteria: Callable) -> Node:
   if criteria.call(from):
     return from

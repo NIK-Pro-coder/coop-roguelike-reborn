@@ -46,11 +46,21 @@ tile_map_data = PackedByteArray("AAAQABAAAAABAAUAAAAQAA8AAAADAAYAAAAQAA4AAAAGAAc
 tile_set = ExtResource("3_h2yge")
 
 [node name="DmgHitbox" type="Area2D" parent="." unique_id=713770041]
-position = Vector2(296, 344)
+position = Vector2(352, 344)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_1bvp3")
-damage = 25.0
+damage = 90.0
+size = Vector2(50, 50)
+iframe_group = "21652389826910"
+metadata/_custom_type_script = "uid://bqav7ajuapjsp"
+
+[node name="DmgHitbox2" type="Area2D" parent="." unique_id=1437926523]
+position = Vector2(272, 344)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_1bvp3")
+damage = -10.4
 size = Vector2(50, 50)
 iframe_group = "21652389826910"
 metadata/_custom_type_script = "uid://bqav7ajuapjsp"

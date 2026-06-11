@@ -19,3 +19,10 @@ func deal_dmg(to_what: Hurtbox) -> void:
     return
   
   hp_comp.damage(damage)
+  
+  var num: DmgNumber = DmgNumber.new()
+  num.damage = damage
+  num.global_position = to_what.global_position
+  
+  get_tree().get_root().add_child.call_deferred(num)
+  
