@@ -11,11 +11,36 @@ class_name Projectile
 @export var team: Hitbox.Teams = Hitbox.Teams.Player
 @export var size: Vector2 = Vector2(20, 20)
 
+@export var lifetime: float = -1.0
+
+@export var piercing: int = 3
+var pierced: int = 0
+
 var hitbox: Hitbox
 
 func _ready() -> void:
   hitbox = Hitbox.new()
   add_child(hitbox)
+  hitbox.hit.connect(func(what: Hurtbox) -> void:
+    pierced += 1
+    if pierced > piercing:
+      expire()
+    hit_enemy(what)
+  )
+  
+  if lifetime <= 0 :
+    return
+  
+  var timer: Timer = Timer.new()
+  timer.autostart = true
+  timer.timeout.connect(expire)
+
+@warning_ignore("unused_parameter")
+func hit_enemy(box: Hurtbox) -> void:
+  pass
+
+func expire() -> void:
+  queue_free()
 
 func _physics_process(delta: float) -> void:
   if !Engine.is_editor_hint():
