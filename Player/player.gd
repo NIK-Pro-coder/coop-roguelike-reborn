@@ -139,7 +139,6 @@ func handle_spells(delta: float) -> void:
           # Account for enemy velocity (approx.)
           var vel_diff: Vector2 = i.velocity * (diff.length() / s.travel_speed)
           real_diff = (i.global_position + vel_diff) - global_position
-          print("hi", vel_diff)
           
         var dot: float = dir.dot(real_diff.normalized())
 
