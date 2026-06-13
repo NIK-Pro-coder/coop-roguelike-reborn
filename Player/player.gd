@@ -115,10 +115,11 @@ func handle_spells(delta: float) -> void:
       Input.get_joy_axis(device, JOY_AXIS_RIGHT_X),
       Input.get_joy_axis(device, JOY_AXIS_RIGHT_Y)
     )
-    if abs(dir.x) < 0.01:
+    if abs(dir.x) < 0.05:
       dir.x = 0
-    if abs(dir.y) < 0.01:
+    if abs(dir.y) < 0.05:
       dir.y = 0
+    dir = dir.normalized()
     
     cast = dir.length_squared() > 0
 

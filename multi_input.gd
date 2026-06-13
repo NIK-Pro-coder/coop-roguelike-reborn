@@ -16,7 +16,7 @@ func get_action_strength(action_name: String, device: int) -> float:
     for i: InputEvent in InputMap.action_get_events(action_name):
       if i is InputEventJoypadMotion:
         var joy_val: float = clamp(Input.get_joy_axis(device, i.axis) / i.axis_value, 0.0, 1.0)
-        if joy_val < 0.01:
+        if joy_val < 0.05:
           joy_val = 0.0
         
         val = max(val, joy_val)
