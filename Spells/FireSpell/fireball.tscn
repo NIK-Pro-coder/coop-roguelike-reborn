@@ -39,7 +39,7 @@ color_ramp = SubResource("GradientTexture1D_u2je5")
 
 [node name="fireball" type="CharacterBody2D" unique_id=1160919186]
 script = ExtResource("1_u2je5")
-speed = 300.0
+speed = 400.0
 size = Vector2(16, 16)
 lifetime = 5.0
 metadata/_custom_type_script = "uid://bwbohng3o31jq"
@@ -51,5 +51,5 @@ texture = ExtResource("2_u2je5")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=20977816]
 amount = 64
-lifetime = 0.5
+lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_q22a5")

@@ -7,5 +7,5 @@ script = ExtResource("1_afiys")
 name = "Fire Spell"
 desc = "Fire"
 cooldown = 0.5
-travel_speed = 300.0
+travel_speed = 400.0
 metadata/_custom_type_script = "uid://deeokg0jf854b"
