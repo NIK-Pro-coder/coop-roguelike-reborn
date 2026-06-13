@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://bxs8c64gm6v7"]
+
+[ext_resource type="Script" uid="uid://bqav7ajuapjsp" path="res://Hitbox/dmg_hitbox.gd" id="1_jfces"]
+
+[sub_resource type="Curve" id="Curve_gwp1p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9633265, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t507r"]
+curve = SubResource("Curve_gwp1p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dl4sq"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 32.0
+angle_min = -179.99998
+angle_max = 180.00002
+angular_velocity_min = -30.000015
+angular_velocity_max = 29.999983
+gravity = Vector3(0, 0, 0)
+scale_min = 6.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_t507r")
+color = Color(1, 0.7833333, 0, 1)
+
+[sub_resource type="Curve" id="Curve_genkd"]
+_data = [Vector2(0, 1), 0.0, -2.4032717, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gwp1p"]
+curve = SubResource("Curve_genkd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t507r"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 48.0
+scale_max = 48.0
+scale_curve = SubResource("CurveTexture_gwp1p")
+color = Color(1, 0.8333334, 0, 1)
+
+[sub_resource type="Curve" id="Curve_dl4sq"]
+_data = [Vector2(0, 1), 0.0, -3.230929, 0, 0, Vector2(1, 0), -0.031488005, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pphn1"]
+curve = SubResource("Curve_dl4sq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_genkd"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 240.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -120.0
+linear_accel_max = -80.0
+scale_min = 2.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_pphn1")
+color = Color(1, 0.8666667, 0, 1)
+
+[sub_resource type="Animation" id="Animation_pphn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fire:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("flash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sparks:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nl3hs"]
+resource_name = "teast"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fire:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("flash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sparks:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmrf4"]
+_data = {
+&"RESET": SubResource("Animation_pphn1"),
+&"explode": SubResource("Animation_nl3hs")
+}
+
+[node name="fireball_explosion" type="Area2D" unique_id=1285609351]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_jfces")
+damage = 25.0
+size = Vector2(48, 48)
+iframe_group = "3739792512111"
+metadata/_custom_type_script = "uid://bqav7ajuapjsp"
+
+[node name="fire" type="GPUParticles2D" parent="." unique_id=2051039496]
+z_index = 1
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dl4sq")
+
+[node name="flash" type="GPUParticles2D" parent="." unique_id=448598866]
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_t507r")
+
+[node name="sparks" type="GPUParticles2D" parent="." unique_id=1636836868]
+z_index = 1
+emitting = false
+amount = 16
+one_shot = true
+speed_scale = 2.5
+explosiveness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_genkd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=333831047]
+libraries/ = SubResource("AnimationLibrary_rmrf4")
+autoplay = &"explode"

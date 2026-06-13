@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cssirjrdiah6y"]
+
+[ext_resource type="Script" uid="uid://8vaptn5jq3c4" path="res://Spells/FireSpell/fireball.gd" id="1_u2je5"]
+[ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="2_u2je5"]
+
+[sub_resource type="Gradient" id="Gradient_s7iqt"]
+offsets = PackedFloat32Array(0, 0.1634981, 0.3269962, 0.7186312, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.3623615, 0.09985284, 1, 1, 0.78517264, 0.20906562, 1, 0, 0, 0, 1, 0.45, 0.45, 0.45, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u2je5"]
+gradient = SubResource("Gradient_s7iqt")
+
+[sub_resource type="Curve" id="Curve_p7rcn"]
+_data = [Vector2(0, 0.50283283), 0.0, 0.0, 0, 0, Vector2(0.7474049, 0.50283283), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_37hjv"]
+curve = SubResource("Curve_p7rcn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q22a5"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+angle_min = -179.99998
+angle_max = 180.00002
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = -25.000015
+angular_velocity_max = 24.999983
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -10.000002
+tangential_accel_max = 9.999997
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_37hjv")
+color = Color(1, 1, 1, 0.5)
+color_ramp = SubResource("GradientTexture1D_u2je5")
+
+[node name="fireball" type="CharacterBody2D" unique_id=1160919186]
+script = ExtResource("1_u2je5")
+speed = 300.0
+size = Vector2(16, 16)
+lifetime = 5.0
+metadata/_custom_type_script = "uid://bwbohng3o31jq"
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=550256534]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("2_u2je5")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=20977816]
+amount = 64
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_q22a5")

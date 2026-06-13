@@ -13,7 +13,11 @@ agent_radius = 16.0
 [node name="Main" type="Node" unique_id=1014945260]
 
 [node name="Player" parent="." unique_id=1584554355 instance=ExtResource("1_ig7tw")]
-position = Vector2(32, 248)
+position = Vector2(80, 608)
+
+[node name="Player2" parent="." unique_id=111660931 instance=ExtResource("1_ig7tw")]
+position = Vector2(88, 216)
+device = 0
 
 [node name="BaseEnemy" parent="." unique_id=1686810503 instance=ExtResource("2_0xm2m")]
 position = Vector2(544, 200)

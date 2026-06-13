@@ -2,14 +2,58 @@
 
 [ext_resource type="Script" uid="uid://b7pfvhv0qw03" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://deeokg0jf854b" path="res://Spells/base_spell.gd" id="2_gwnis"]
+[ext_resource type="Resource" uid="uid://bvyg5kk82yp1f" path="res://Spells/FireSpell/fire_spell.tres" id="3_k53q1"]
+[ext_resource type="Resource" uid="uid://cace5urkpd58n" path="res://Spells/AirSpell/air_spell.tres" id="3_od3ui"]
+[ext_resource type="Resource" uid="uid://dkguie5eowtw4" path="res://Spells/EarthSpell/earth_spell.tres" id="4_00tjw"]
+[ext_resource type="Theme" uid="uid://dlrj8hj0dxq8r" path="res://main_theme.tres" id="5_k53q1"]
+[ext_resource type="Resource" uid="uid://b37mb0570ny5m" path="res://Spells/WaterSpell/water_spell.tres" id="6_x3vf3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
 radius = 16.0
+
+[sub_resource type="Animation" id="Animation_fhl08"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vtle1"]
+resource_name = "show_select"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_od3ui"]
+_data = {
+&"RESET": SubResource("Animation_fhl08"),
+&"show_select": SubResource("Animation_vtle1")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1584554355 groups=["player"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_4ntmi")
+spells = Array[ExtResource("2_gwnis")]([ExtResource("3_k53q1"), ExtResource("3_od3ui"), ExtResource("4_00tjw"), ExtResource("6_x3vf3")])
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1216765225]
 scale = Vector2(0.25, 0.25)
@@ -18,3 +62,20 @@ texture = ExtResource("1_l8h54")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=905933297]
 shape = SubResource("CircleShape2D_4ntmi")
 debug_color = Color(0, 0.58383155, 0.6651851, 0.42000002)
+
+[node name="SpellSelectedTxt" type="RichTextLabel" parent="." unique_id=913407799]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+offset_left = -128.0
+offset_top = 16.0
+offset_right = 128.0
+offset_bottom = 56.0
+theme = ExtResource("5_k53q1")
+theme_override_font_sizes/normal_font_size = 8
+text = "Selected 'Spell name'"
+horizontal_alignment = 1
+
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=178411035]
+unique_name_in_owner = true
+root_node = NodePath("../SpellSelectedTxt")
+libraries/ = SubResource("AnimationLibrary_od3ui")

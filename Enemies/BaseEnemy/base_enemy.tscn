@@ -5,11 +5,13 @@
 [ext_resource type="Script" uid="uid://dqi86iea56asx" path="res://StateMachine/state_machine.gd" id="2_wg550"]
 [ext_resource type="Script" uid="uid://bm35bt0prpugp" path="res://StateMachine/States/follow_state.gd" id="4_jsne5"]
 [ext_resource type="Script" uid="uid://dve227ngbfwp4" path="res://StateMachine/States/attack_state.gd" id="5_8kltk"]
+[ext_resource type="Script" uid="uid://cvb3spfna5gpm" path="res://Hitbox/hurtbox.gd" id="6_6r630"]
+[ext_resource type="Script" uid="uid://bpbk0fsb4o1i3" path="res://Components/Health/hp_comp.gd" id="7_oojbt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8kltk"]
 radius = 16.0
 
-[node name="BaseEnemy" type="CharacterBody2D" unique_id=1686810503]
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1686810503 groups=["enemies"]]
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_i5m5u")
@@ -45,4 +47,27 @@ debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1370738770]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_6r630")
+size = Vector2(32, 32)
+team = 4
+metadata/_custom_type_script = "uid://cvb3spfna5gpm"
+
+[node name="HpComp" type="Node" parent="." unique_id=614720155 node_paths=PackedStringArray("hp_bar")]
+script = ExtResource("7_oojbt")
+use_hp_bar = true
+hp_bar = NodePath("../HpBar")
+metadata/_custom_type_script = "uid://bpbk0fsb4o1i3"
+
+[node name="HpBar" type="ProgressBar" parent="." unique_id=1489051753]
+offset_left = -16.0
+offset_top = 20.0
+offset_right = 16.0
+offset_bottom = 24.0
+value = 100.0
+show_percentage = false
+
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
+[connection signal="died" from="HpComp" to="." method="died"]

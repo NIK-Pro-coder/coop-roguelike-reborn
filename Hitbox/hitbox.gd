@@ -25,9 +25,13 @@ func _ready() -> void:
   shape.shape = RectangleShape2D.new()
   add_child(shape)
 
+signal hit(what: Hurtbox)
+
 func _process(_delta: float) -> void:
   collision_mask = team
   (shape.shape as RectangleShape2D).size = size
   
   for i: Hurtbox in get_overlapping_areas():
-    i.hit(self)
+    if not iframe_group in i.iframes or i.iframes[iframe_group] <= 0 :
+      i.hit(self)
+      hit.emit(i)

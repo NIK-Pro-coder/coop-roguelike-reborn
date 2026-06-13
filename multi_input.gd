@@ -4,7 +4,7 @@ func get_action_strength(action_name: String, device: int) -> float:
   var val: float = 0.0
   
   if device < 0:
-    for i in InputMap.action_get_events(action_name):
+    for i: InputEvent in InputMap.action_get_events(action_name):
       if i is InputEventKey:
         if Input.is_physical_key_pressed(i.physical_keycode):
           val = max(val, 1.0)
@@ -13,7 +13,7 @@ func get_action_strength(action_name: String, device: int) -> float:
         if Input.is_mouse_button_pressed(i.button_index):
           val = max(val, 1.0)
   else:
-    for i in InputMap.action_get_events(action_name):
+    for i: InputEvent in InputMap.action_get_events(action_name):
       if i is InputEventJoypadMotion:
         var joy_val: float = clamp(Input.get_joy_axis(device, i.axis) / i.axis_value, 0.0, 1.0)
         if joy_val < 0.01:
@@ -44,5 +44,5 @@ func get_action_vector(negx: String, posx: String, negy: String, posy: String, d
 
 func _ready() -> void:
   print("Connected joypads:")
-  for i in Input.get_connected_joypads():
+  for i: int in Input.get_connected_joypads():
     print("  %s. %s" % [i, Input.get_joy_name(i)])

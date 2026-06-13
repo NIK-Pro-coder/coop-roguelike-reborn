@@ -10,9 +10,9 @@ var speed: float = 200.0
 
 func grab_target() -> void:
   var dist: float = -1.0
- 
-  for i in get_tree().get_nodes_in_group("player"):
-    var d: float = (i as Player).global_position.distance_squared_to(global_position)
+  
+  for i: Player in get_tree().get_nodes_in_group("player"):
+    var d: float = i.global_position.distance_squared_to(global_position)
     
     if d < dist or dist < 0.0:
       dist = d
@@ -48,3 +48,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
   target_vel = safe_velocity * move_delta * 16.0
+
+func died() -> void:
+  queue_free()
