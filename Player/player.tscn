@@ -53,7 +53,7 @@ _data = {
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_4ntmi")
-spells = Array[ExtResource("2_gwnis")]([ExtResource("3_od3ui"), ExtResource("4_00tjw"), ExtResource("3_k53q1"), ExtResource("6_x3vf3")])
+spells = Array[ExtResource("2_gwnis")]([ExtResource("3_k53q1"), ExtResource("3_od3ui"), ExtResource("4_00tjw"), ExtResource("6_x3vf3")])
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1216765225]
 scale = Vector2(0.25, 0.25)

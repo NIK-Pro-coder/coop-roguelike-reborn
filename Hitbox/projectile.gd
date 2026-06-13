@@ -6,15 +6,15 @@ class_name Projectile
 @export var dir: Vector2 = Vector2(1, 0):
   set(val):
     dir = val.normalized()
-    
-@export var speed: float = 200
+
+@export_range(0.0, 100.0, 0.01, "or_greater", "suffix:px/s") var speed: float = 200
 @export var team: Hitbox.Teams = Hitbox.Teams.Player
 @export var size: Vector2 = Vector2(20, 20)
 
-@export var lifetime: float = -1.0
+@export_range(0.0, 5.0, 0.01, "or_greater", "or_less", "suffix:s") var lifetime: float = -1.0
 
 @export var damage: float = 10.0
-@export var piercing: int = -1
+@export_range(-1, 5, 1, "or_greater") var piercing: int = -1
 var pierced: int = 0
 
 var hitbox: DmgHitbox

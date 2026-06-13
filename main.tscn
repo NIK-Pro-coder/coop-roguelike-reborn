@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://m5c1kwwxoqar" path="res://Enemies/BaseEnemy/base_enemy.tscn" id="2_0xm2m"]
 [ext_resource type="TileSet" uid="uid://c2jce6753fhst" path="res://main_tileset.tres" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://bqav7ajuapjsp" path="res://Hitbox/dmg_hitbox.gd" id="4_1bvp3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
 vertices = PackedVector2Array(360, 280, 360, 104, 1003.1328, -96.828125, 1132.1172, 783.2969, -127.35156, -142.96875, 280, 104, 280, 120, 248, 120, 248, 136, 232, 136, -104.578125, 752.5703, 232, 296, 248, 296, 248, 312, 264, 312, 264, 328, 328, 328, 328, 312, 344, 312, 344, 280)
@@ -14,7 +13,7 @@ agent_radius = 16.0
 [node name="Main" type="Node" unique_id=1014945260]
 
 [node name="Player" parent="." unique_id=1584554355 instance=ExtResource("1_ig7tw")]
-position = Vector2(32, 248)
+position = Vector2(80, 608)
 
 [node name="Player2" parent="." unique_id=111660931 instance=ExtResource("1_ig7tw")]
 position = Vector2(88, 216)
@@ -44,23 +43,3 @@ navigation_polygon = SubResource("NavigationPolygon_h2yge")
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" unique_id=1782479879]
 tile_map_data = PackedByteArray("AAAQABAAAAABAAUAAAAQAA8AAAADAAYAAAAQAA4AAAAGAAcAAAAQAA0AAAABAAYAAAAQAAwAAAAGAAMAAAAQAAsAAAAAAAQAAAAQAAoAAAAHAAUAAAARAAoAAAAEAAIAAAARAAkAAAAEAAUAAAASAAkAAAAGAAUAAAATAAkAAAAEAAAAAAATAAgAAAAFAAAAAAAUAAgAAAABAAIAAAAUAAkAAAAGAAMAAAAUAAoAAAAEAAAAAAAUAAsAAAADAAUAAAAUAAwAAAAGAAIAAAAUAA0AAAACAAcAAAAUAA4AAAACAAYAAAAUAA8AAAAHAAcAAAATAA8AAAACAAMAAAATABAAAAAFAAQAAAASABAAAAACAAEAAAASABEAAAAHAAQAAAARABEAAAAHAAUAAAARABAAAAAGAAEAAAARAA0AAAAFAAMAAAARAA4AAAAHAAcAAAARAA8AAAAEAAEAAAASAA4AAAAHAAAAAAASAA8AAAAEAAAAAAASAA0AAAAGAAYAAAASAAwAAAAGAAAAAAATAA0AAAABAAEAAAATAAwAAAAHAAEAAAATAAsAAAABAAMAAAASAAsAAAADAAQAAAARAAsAAAADAAEAAAARAAwAAAAEAAQAAAASAAoAAAABAAMAAAATAAoAAAABAAMAAAATAA4AAAAGAAIAAAASABIAAAABAAEAAAATABEAAAAAAAEAAAA=")
 tile_set = ExtResource("3_h2yge")
-
-[node name="DmgHitbox" type="Area2D" parent="." unique_id=713770041]
-position = Vector2(352, 344)
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("4_1bvp3")
-damage = 90.0
-size = Vector2(50, 50)
-iframe_group = "21652389826910"
-metadata/_custom_type_script = "uid://bqav7ajuapjsp"
-
-[node name="DmgHitbox2" type="Area2D" parent="." unique_id=1437926523]
-position = Vector2(272, 344)
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("4_1bvp3")
-damage = -10.4
-size = Vector2(50, 50)
-iframe_group = "21652389826910"
-metadata/_custom_type_script = "uid://bqav7ajuapjsp"
