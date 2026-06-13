@@ -146,7 +146,8 @@ func handle_spells(delta: float) -> void:
         var norm_diff: Vector2 = real_diff.rotated(-ang)        
         var dist: float = abs(norm_diff.y)
         
-        if dot >= .9 and (dist < min_dist or min_dist < 0.0):
+        # You have to aim with about +- 10° accuracy to have aim-assist
+        if dot >= .985 and (dist < min_dist or min_dist < 0.0):
           min_dist = dist
           new_dir = real_diff.normalized()
           
