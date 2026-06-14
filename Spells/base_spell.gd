@@ -15,8 +15,6 @@ enum Targets {
 
 @export var target: Targets = Targets.Enemies
 
-@export_range(0.0, 100.0, 0.01, "or_greater", "suffix:px/s") var travel_speed: float = 0.0
-
 @warning_ignore("unused_parameter")
 func cast(player: Player, target_dir: Vector2) -> void:
   print("Cast: %s" % target_dir)
