@@ -47,6 +47,12 @@ signal hurt(amt: float)
 func damage(amt: float) -> void:
   if amt == 0.0:
     return
+  
+  var num: DmgNumber = DmgNumber.new()
+  num.damage = amt
+  num.global_position = (get_parent() as Node2D).global_position if get_parent() is Node2D else Vector2.ZERO
+  
+  get_tree().get_root().add_child.call_deferred(num)
 
   hp -= amt
   

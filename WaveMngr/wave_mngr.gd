@@ -64,7 +64,7 @@ func spawn_wave() -> void:
 
 func _ready() -> void:
   wave_cooldown = grace_period * 2
-  begin_waves()
+  begin_waves(20)
 
 func _process(delta: float) -> void:
   var idx: int = 0
@@ -74,13 +74,15 @@ func _process(delta: float) -> void:
       if len(enemies_spawned) <= 0:
         print("Wave %s finished" % wave_num)
         wave_cooldown = grace_period
+        if waves_to_spawn == 0:
+          print("Waves finished")
     idx += 1
   
   if len(enemies_spawned) > 0:
     var hp_comp: HpComp = Qol.find_hp_comp(get_tree().get_root())
     
     if hp_comp:
-      hp_comp.damage(1)
+      hp_comp.damage(10)
   
   if len(enemies_spawned) > 0 or waves_to_spawn <= 0:
     return
