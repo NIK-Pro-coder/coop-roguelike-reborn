@@ -1,5 +1,8 @@
 extends Node
 
+var want_to_debug: bool = true
+var is_debugging: bool = want_to_debug and OS.is_debug_build()
+
 var main_theme: Theme = load("uid://dlrj8hj0dxq8r")
 
 func find_with_criteria(from: Node, criteria: Callable) -> Node:

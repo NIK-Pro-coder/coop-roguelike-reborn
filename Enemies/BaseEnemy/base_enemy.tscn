@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="1_1ik2b"]
 [ext_resource type="Script" uid="uid://bdmjqu23lmdh" path="res://Enemies/BaseEnemy/base_enemy.gd" id="1_i5m5u"]
 [ext_resource type="Script" uid="uid://dqi86iea56asx" path="res://StateMachine/state_machine.gd" id="2_wg550"]
-[ext_resource type="Script" uid="uid://bm35bt0prpugp" path="res://StateMachine/States/follow_state.gd" id="4_jsne5"]
-[ext_resource type="Script" uid="uid://dve227ngbfwp4" path="res://StateMachine/States/attack_state.gd" id="5_8kltk"]
 [ext_resource type="Script" uid="uid://cvb3spfna5gpm" path="res://Hitbox/hurtbox.gd" id="6_6r630"]
 [ext_resource type="Script" uid="uid://bpbk0fsb4o1i3" path="res://Components/Health/hp_comp.gd" id="7_oojbt"]
 
@@ -26,17 +24,10 @@ shape = SubResource("CircleShape2D_8kltk")
 debug_color = Color(0.6651851, 0, 0, 0.42000002)
 
 [node name="StateMachine" type="Node" parent="." unique_id=527699795 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
 script = ExtResource("2_wg550")
-initial_state = NodePath("Follow")
+initial_state = NodePath("")
 metadata/_custom_type_script = "uid://dqi86iea56asx"
-
-[node name="Follow" type="Node" parent="StateMachine" unique_id=1359509179]
-script = ExtResource("4_jsne5")
-metadata/_custom_type_script = "uid://bm35bt0prpugp"
-
-[node name="Attack" type="Node" parent="StateMachine" unique_id=1019162841]
-script = ExtResource("5_8kltk")
-metadata/_custom_type_script = "uid://dve227ngbfwp4"
 
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=96857620]
 unique_name_in_owner = true
@@ -68,6 +59,17 @@ offset_right = 16.0
 offset_bottom = 24.0
 value = 100.0
 show_percentage = false
+
+[node name="DebugState" type="RichTextLabel" parent="." unique_id=838168134]
+unique_name_in_owner = true
+offset_left = -64.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 72.0
+text = "State: Skibidi
+Target: Balls"
+fit_content = true
+horizontal_alignment = 1
 
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="died" from="HpComp" to="." method="died"]

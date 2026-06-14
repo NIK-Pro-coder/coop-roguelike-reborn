@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Enemy
 
 @onready var nav_agent: NavigationAgent2D = %NavAgent
+@onready var debug_state: RichTextLabel = %DebugState
+@onready var state_machine: StateMachine = %StateMachine
 
 var target: Player
 var retarget: float = .25
@@ -24,6 +26,9 @@ var move_position: Vector2
 
 func _ready() -> void:
   move_position = global_position
+  
+  if !Qol.is_debugging:
+    debug_state.queue_free()
 
 func _process(delta: float) -> void:
   retarget -= delta
@@ -32,6 +37,16 @@ func _process(delta: float) -> void:
   
   nav_agent.target_position = move_position
   nav_agent.max_speed = speed / 16.0
+  
+  if Qol.is_debugging:
+    var state_name: String = "Skibidi"
+    
+    for i: String in state_machine.states:
+      if state_machine.states[i] == state_machine.current_state:
+        state_name = i
+        break
+        
+    debug_state.text = "State: %s\nTarget: %s" % [state_name, target.name]
 
 var move_delta: float = 0.0
 var target_vel: Vector2 = Vector2.ZERO
