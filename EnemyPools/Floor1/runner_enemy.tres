@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyInfo" format=3 uid="uid://gxodd8cn0s0r"]
+
+[ext_resource type="PackedScene" uid="uid://bit8olf6c1a81" path="res://Enemies/RunnerEnemy/runner_enemy.tscn" id="1_0b16x"]
+[ext_resource type="Script" uid="uid://bjwepeoi1n5hu" path="res://EnemyPools/enemy_info.gd" id="2_qbchp"]
+
+[resource]
+script = ExtResource("2_qbchp")
+enemy = ExtResource("1_0b16x")
+metadata/_custom_type_script = "uid://bjwepeoi1n5hu"

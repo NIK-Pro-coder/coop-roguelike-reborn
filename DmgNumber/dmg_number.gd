@@ -20,6 +20,9 @@ func _ready() -> void:
   text = str(abs(damage)) if damage != int(damage) else str(abs(int(damage)))
   fit_content = true
   custom_minimum_size.x = 10000
+  position.x -= custom_minimum_size.x / 2.0
+  horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+  vertical_alignment = VERTICAL_ALIGNMENT_CENTER
   
   theme = Qol.main_theme
   

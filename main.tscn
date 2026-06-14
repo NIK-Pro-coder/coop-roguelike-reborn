@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bbda4h7u3rerl"]
 
 [ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://m5c1kwwxoqar" path="res://Enemies/BaseEnemy/base_enemy.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c74jbybnjf2wb" path="res://WaveMngr/wave_mngr.tscn" id="3_1bvp3"]
 [ext_resource type="TileSet" uid="uid://c2jce6753fhst" path="res://main_tileset.tres" id="3_h2yge"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
@@ -19,27 +19,11 @@ position = Vector2(80, 608)
 position = Vector2(88, 216)
 device = 0
 
-[node name="BaseEnemy" parent="." unique_id=1686810503 instance=ExtResource("2_0xm2m")]
-position = Vector2(544, 200)
-
-[node name="BaseEnemy2" parent="." unique_id=54283226 instance=ExtResource("2_0xm2m")]
-position = Vector2(584, 232)
-
-[node name="BaseEnemy3" parent="." unique_id=1503297345 instance=ExtResource("2_0xm2m")]
-position = Vector2(616, 192)
-
-[node name="BaseEnemy4" parent="." unique_id=770515727 instance=ExtResource("2_0xm2m")]
-position = Vector2(504, 240)
-
-[node name="BaseEnemy5" parent="." unique_id=992091137 instance=ExtResource("2_0xm2m")]
-position = Vector2(552, 160)
-
-[node name="BaseEnemy6" parent="." unique_id=2092161712 instance=ExtResource("2_0xm2m")]
-position = Vector2(664, 208)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=637748730]
 navigation_polygon = SubResource("NavigationPolygon_h2yge")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" unique_id=1782479879]
 tile_map_data = PackedByteArray("AAAQABAAAAABAAUAAAAQAA8AAAADAAYAAAAQAA4AAAAGAAcAAAAQAA0AAAABAAYAAAAQAAwAAAAGAAMAAAAQAAsAAAAAAAQAAAAQAAoAAAAHAAUAAAARAAoAAAAEAAIAAAARAAkAAAAEAAUAAAASAAkAAAAGAAUAAAATAAkAAAAEAAAAAAATAAgAAAAFAAAAAAAUAAgAAAABAAIAAAAUAAkAAAAGAAMAAAAUAAoAAAAEAAAAAAAUAAsAAAADAAUAAAAUAAwAAAAGAAIAAAAUAA0AAAACAAcAAAAUAA4AAAACAAYAAAAUAA8AAAAHAAcAAAATAA8AAAACAAMAAAATABAAAAAFAAQAAAASABAAAAACAAEAAAASABEAAAAHAAQAAAARABEAAAAHAAUAAAARABAAAAAGAAEAAAARAA0AAAAFAAMAAAARAA4AAAAHAAcAAAARAA8AAAAEAAEAAAASAA4AAAAHAAAAAAASAA8AAAAEAAAAAAASAA0AAAAGAAYAAAASAAwAAAAGAAAAAAATAA0AAAABAAEAAAATAAwAAAAHAAEAAAATAAsAAAABAAMAAAASAAsAAAADAAQAAAARAAsAAAADAAEAAAARAAwAAAAEAAQAAAASAAoAAAABAAMAAAATAAoAAAABAAMAAAATAA4AAAAGAAIAAAASABIAAAABAAEAAAATABEAAAAAAAEAAAA=")
 tile_set = ExtResource("3_h2yge")
+
+[node name="WaveMngr" parent="." unique_id=2126990534 instance=ExtResource("3_1bvp3")]

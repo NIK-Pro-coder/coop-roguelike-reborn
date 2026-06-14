@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bit8olf6c1a81"]
+
+[ext_resource type="PackedScene" uid="uid://m5c1kwwxoqar" path="res://Enemies/BaseEnemy/base_enemy.tscn" id="1_4yc0m"]
+[ext_resource type="Script" uid="uid://bm35bt0prpugp" path="res://StateMachine/States/follow_state.gd" id="4_45isc"]
+[ext_resource type="Script" uid="uid://dve227ngbfwp4" path="res://StateMachine/States/attack_state.gd" id="5_bmnry"]
+
+[node name="RunnerEnemy" unique_id=1686810503 instance=ExtResource("1_4yc0m")]
+
+[node name="StateMachine" parent="." index="2" unique_id=527699795 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Follow")
+
+[node name="Follow" type="Node" parent="StateMachine" index="0" unique_id=1654314794]
+script = ExtResource("4_45isc")
+metadata/_custom_type_script = "uid://bm35bt0prpugp"
+
+[node name="Attack" type="Node" parent="StateMachine" index="1" unique_id=966613507]
+script = ExtResource("5_bmnry")
+metadata/_custom_type_script = "uid://dve227ngbfwp4"
