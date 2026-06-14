@@ -13,6 +13,9 @@ class_name WaveMngr
 ## The time to wait after a wave before spawning the next
 @export_range(0.0, 5.0, 0.1, "or_greater", "suffix:s") var grace_period: float = 2.5
 
+@export var spawn_around: Vector2 = Vector2.ZERO
+@export var spawn_radius: float = 500
+
 var wave_num: int = 0
 
 var waves_to_spawn: int = 0
@@ -39,19 +42,6 @@ func spawn_wave() -> void:
   wave_spawned.emit()
   print("Spawned wave %s (points: %s)" % [wave_num, points])
   
-  var player_center: Vector2 = Vector2.ZERO
-  var radius: float = 200
-  var players: Array[Node] = get_tree().get_nodes_in_group("player")
-  
-  for i: Player in players:
-    player_center += i.global_position / len(players)
-  
-  for i: Player in players:
-    var dist: float = (player_center - i.global_position).length()
-    
-    if dist + 500 > radius:
-      radius = dist + 500
-  
   while points > 0.0:
     var available: Array[EnemyInfo] = pool.enemies.filter(func(x: EnemyInfo) -> bool:
       return x.value <= points
@@ -65,10 +55,10 @@ func spawn_wave() -> void:
     points -= enemy_info.value
     
     var enemy: Enemy = enemy_info.enemy.instantiate()
-    enemy.global_position = player_center + Vector2(
+    enemy.global_position = spawn_around + Vector2(
       randf_range(-1.0, 1.0),
       randf_range(-1.0, 1.0)
-    ).normalized() * radius
+    ).normalized() * spawn_radius
     
     get_tree().get_root().add_child.call_deferred(enemy)
     
