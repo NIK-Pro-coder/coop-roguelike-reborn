@@ -4,10 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="1_l8h54"]
 [ext_resource type="Script" uid="uid://deeokg0jf854b" path="res://Spells/base_spell.gd" id="2_gwnis"]
 [ext_resource type="Resource" uid="uid://bvyg5kk82yp1f" path="res://Spells/FireSpell/fire_spell.tres" id="3_k53q1"]
-[ext_resource type="Resource" uid="uid://cace5urkpd58n" path="res://Spells/AirSpell/air_spell.tres" id="3_od3ui"]
-[ext_resource type="Resource" uid="uid://dkguie5eowtw4" path="res://Spells/EarthSpell/earth_spell.tres" id="4_00tjw"]
 [ext_resource type="Theme" uid="uid://dlrj8hj0dxq8r" path="res://main_theme.tres" id="5_k53q1"]
-[ext_resource type="Resource" uid="uid://b37mb0570ny5m" path="res://Spells/WaterSpell/water_spell.tres" id="6_x3vf3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
 radius = 16.0
@@ -53,7 +50,7 @@ _data = {
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_4ntmi")
-spells = Array[ExtResource("2_gwnis")]([ExtResource("3_k53q1"), ExtResource("3_od3ui"), ExtResource("4_00tjw"), ExtResource("6_x3vf3")])
+spells = Array[ExtResource("2_gwnis")]([ExtResource("3_k53q1")])
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1216765225]
 scale = Vector2(0.25, 0.25)
