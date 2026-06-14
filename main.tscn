@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://bbda4h7u3rerl"]
 
 [ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c74jbybnjf2wb" path="res://WaveMngr/wave_mngr.tscn" id="3_1bvp3"]
 [ext_resource type="TileSet" uid="uid://c2jce6753fhst" path="res://main_tileset.tres" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bit8olf6c1a81" path="res://Enemies/RunnerEnemy/runner_enemy.tscn" id="4_1bvp3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
 vertices = PackedVector2Array(360, 280, 360, 104, 1003.1328, -96.828125, 1132.1172, 783.2969, -127.35156, -142.96875, 280, 104, 280, 120, 248, 120, 248, 136, 232, 136, -104.578125, 752.5703, 232, 296, 248, 296, 248, 312, 264, 312, 264, 328, 328, 328, 328, 312, 344, 312, 344, 280)
@@ -26,5 +26,4 @@ navigation_polygon = SubResource("NavigationPolygon_h2yge")
 tile_map_data = PackedByteArray("AAAQABAAAAABAAUAAAAQAA8AAAADAAYAAAAQAA4AAAAGAAcAAAAQAA0AAAABAAYAAAAQAAwAAAAGAAMAAAAQAAsAAAAAAAQAAAAQAAoAAAAHAAUAAAARAAoAAAAEAAIAAAARAAkAAAAEAAUAAAASAAkAAAAGAAUAAAATAAkAAAAEAAAAAAATAAgAAAAFAAAAAAAUAAgAAAABAAIAAAAUAAkAAAAGAAMAAAAUAAoAAAAEAAAAAAAUAAsAAAADAAUAAAAUAAwAAAAGAAIAAAAUAA0AAAACAAcAAAAUAA4AAAACAAYAAAAUAA8AAAAHAAcAAAATAA8AAAACAAMAAAATABAAAAAFAAQAAAASABAAAAACAAEAAAASABEAAAAHAAQAAAARABEAAAAHAAUAAAARABAAAAAGAAEAAAARAA0AAAAFAAMAAAARAA4AAAAHAAcAAAARAA8AAAAEAAEAAAASAA4AAAAHAAAAAAASAA8AAAAEAAAAAAASAA0AAAAGAAYAAAASAAwAAAAGAAAAAAATAA0AAAABAAEAAAATAAwAAAAHAAEAAAATAAsAAAABAAMAAAASAAsAAAADAAQAAAARAAsAAAADAAEAAAARAAwAAAAEAAQAAAASAAoAAAABAAMAAAATAAoAAAABAAMAAAATAA4AAAAGAAIAAAASABIAAAABAAEAAAATABEAAAAAAAEAAAA=")
 tile_set = ExtResource("3_h2yge")
 
-[node name="RunnerEnemy" parent="." unique_id=1686810503 instance=ExtResource("4_1bvp3")]
-position = Vector2(200, 488)
+[node name="WaveMngr" parent="." unique_id=2126990534 instance=ExtResource("3_1bvp3")]
