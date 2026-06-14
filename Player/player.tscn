@@ -49,7 +49,7 @@ _data = {
 &"show_select": SubResource("Animation_vtle1")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1584554355 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1584554355 groups=["allies", "player"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_4ntmi")

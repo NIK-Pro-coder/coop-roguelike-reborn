@@ -126,32 +126,25 @@ func handle_spells(delta: float) -> void:
   if cast :
     var s: Spell = spells[sel_spell]
     
-    if s.target == Spell.Targets.Enemies:
-      var min_dist: float = -1.0
-      var new_dir: Vector2 = dir
-      var ang: float = dir.angle()
-      
-      for i: Enemy in get_tree().get_nodes_in_group("enemies"):
-        # Prefer enemy closest to the direction vector
-        var diff: Vector2 = i.global_position - global_position
+    var min_dist: float = -1.0
+    var new_dir: Vector2 = dir
+    var ang: float = dir.angle()
+    
+    for i: Vector2 in s.get_aim_assist_points(self):
+      # Prefer enemy closest to the direction vector
+      var diff: Vector2 = i - global_position
         
-        var real_diff: Vector2 = diff
-        if s.travel_speed > 0.0:
-          # Account for enemy velocity (approx.)
-          var vel_diff: Vector2 = i.velocity * (diff.length() / s.travel_speed)
-          real_diff = (i.global_position + vel_diff) - global_position
-          
-        var dot: float = dir.dot(real_diff.normalized())
+      var dot: float = dir.dot(diff.normalized())
 
-        var norm_diff: Vector2 = real_diff.rotated(-ang)        
-        var dist: float = abs(norm_diff.y)
+      var norm_diff: Vector2 = diff.rotated(-ang)        
+      var dist: float = abs(norm_diff.y)
+      
+      # You have to aim with about +- 10° accuracy to have aim-assist
+      if dot >= .985 and (dist < min_dist or min_dist < 0.0):
+        min_dist = dist
+        new_dir = diff.normalized()
         
-        # You have to aim with about +- 10° accuracy to have aim-assist
-        if dot >= .985 and (dist < min_dist or min_dist < 0.0):
-          min_dist = dist
-          new_dir = real_diff.normalized()
-          
-      dir = new_dir
+    dir = new_dir
     
     s.cast(self, dir)
     spell_cd[s] = s.cooldown

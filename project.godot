@@ -30,6 +30,7 @@ gdscript/warnings/missing_await=1
 
 player="Group for all players"
 enemies=""
+allies=""
 
 [input]
 
