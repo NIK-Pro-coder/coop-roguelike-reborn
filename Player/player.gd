@@ -100,17 +100,22 @@ func handle_spells(delta: float) -> void:
     cycled = true
   else :
     cycled = false
-
-  if spell_cd[spells[sel_spell]] > 0.0:
+    
+  var s: Spell = spells[sel_spell]
+  var aim_assist_points: Array[Vector2] = s.get_aim_assist_points(self)
+      
+  if spell_cd[s] > 0.0:
     return
   
   var cast: bool = false
   var dir: Vector2 = Vector2(0, 0)
+  var tolerance: float = 1.0
   
   if device < 0 :
     cast = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
     dir = (get_global_mouse_position() - global_position).normalized()
   else :
+    tolerance = .8
     dir = Vector2(
       Input.get_joy_axis(device, JOY_AXIS_RIGHT_X),
       Input.get_joy_axis(device, JOY_AXIS_RIGHT_Y)
@@ -124,13 +129,11 @@ func handle_spells(delta: float) -> void:
     cast = dir.length_squared() > 0
 
   if cast :
-    var s: Spell = spells[sel_spell]
-    
     var min_dist: float = -1.0
     var new_dir: Vector2 = dir
     var ang: float = dir.angle()
     
-    for i: Vector2 in s.get_aim_assist_points(self):
+    for i: Vector2 in aim_assist_points:
       # Prefer enemy closest to the direction vector
       var diff: Vector2 = i - global_position
         
@@ -140,7 +143,7 @@ func handle_spells(delta: float) -> void:
       var dist: float = abs(norm_diff.y)
       
       # You have to aim with about +- 10° accuracy to have aim-assist
-      if dot >= .985 and (dist < min_dist or min_dist < 0.0):
+      if dot >= tolerance and (dist < min_dist or min_dist < 0.0):
         min_dist = dist
         new_dir = diff.normalized()
         
