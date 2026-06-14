@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://c74jbybnjf2wb"]
 
 [ext_resource type="Script" uid="uid://dg20p33m68pn6" path="res://WaveMngr/wave_mngr.gd" id="1_qwv2i"]
+[ext_resource type="Resource" uid="uid://0teytmijyf3" path="res://EnemyPools/Pools/floor1_pool.tres" id="2_3dcwf"]
+[ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="3_4slol"]
 
 [node name="WaveMngr" type="Node" unique_id=2126990534]
 script = ExtResource("1_qwv2i")
+pool = ExtResource("2_3dcwf")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=879953883]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("3_4slol")

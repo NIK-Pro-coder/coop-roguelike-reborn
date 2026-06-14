@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
         state_name = i
         break
         
-    debug_state.text = "State: %s\nTarget: %s" % [state_name, target.name]
+    debug_state.text = "State: %s\nTarget: %s" % [state_name, str(target.name) if target else "null"]
 
 var move_delta: float = 0.0
 var target_vel: Vector2 = Vector2.ZERO

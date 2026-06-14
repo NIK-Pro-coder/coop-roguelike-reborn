@@ -29,5 +29,5 @@ func transition_to(to_state: String) -> void:
   current_state.enter(enemy)
 
 func _physics_process(delta: float) -> void:
-  if current_state:
+  if current_state and enemy.target:
     current_state.update(delta, enemy)

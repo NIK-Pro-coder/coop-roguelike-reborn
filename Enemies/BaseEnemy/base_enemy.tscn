@@ -23,10 +23,9 @@ texture = ExtResource("1_1ik2b")
 shape = SubResource("CircleShape2D_8kltk")
 debug_color = Color(0.6651851, 0, 0, 0.42000002)
 
-[node name="StateMachine" type="Node" parent="." unique_id=527699795 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=527699795]
 unique_name_in_owner = true
 script = ExtResource("2_wg550")
-initial_state = NodePath("")
 metadata/_custom_type_script = "uid://dqi86iea56asx"
 
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=96857620]
