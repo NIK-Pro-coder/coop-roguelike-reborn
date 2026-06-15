@@ -13,6 +13,8 @@ enum Teams {
 @export var iframe_group: String = ""
 @export var iframe_length: float = .5
 
+var attacker: Node
+
 var shape: CollisionShape2D
 
 func _ready() -> void:

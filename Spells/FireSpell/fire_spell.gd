@@ -6,6 +6,8 @@ func cast(player: Player, target_dir: Vector2) -> void:
   var proj: Projectile = fireball.instantiate()
   proj.dir = target_dir
   proj.global_position = player.global_position
+  proj.damage = player.damage
+  proj.attacker = player
 
   player.get_tree().get_root().add_child.call_deferred(proj)
 

@@ -41,7 +41,7 @@ func get_flat_changes_to_stat(stat: Stats) -> float:
   return flat
 
 func get_mult_changes_to_stat(stat: Stats) -> float:
-  var mult: float = 0.0
+  var mult: float = 1.0
   
   for i: StatChange in get_changes_to_stat(stat):
     mult += i.mult_change
@@ -101,6 +101,3 @@ func add_mult_def_change(change: float, duration: float = -1) -> String: return 
 func add_spd_change(flat: float, mult: float, duration: float = -1) -> String: return add_stat_change(Stats.Speed, flat, mult, duration)
 func add_flat_spd_change(change: float, duration: float = -1) -> String: return add_spd_change(change, 0.0, duration)
 func add_mult_spd_change(change: float, duration: float = -1) -> String: return add_spd_change(0.0, change, duration)
-
-func _process(delta: float) -> void:
-  print(health_mult)
