@@ -18,8 +18,8 @@ func update(delta: float, enemy: Enemy) -> void:
   if attack_cooldown <= 0.0:
     var proj: Projectile = Projectile.new()
     proj.global_position = enemy.global_position
-    proj.dir = -diff.normalized()
-    proj.speed = 100
+    proj.dir = (enemy.target.global_position + enemy.target.velocity * diff.length() / 300 - enemy.global_position).normalized()
+    proj.speed = 300
     proj.damage = enemy.damage
     proj.team = Hitbox.Teams.Enemy
     proj.attacker = enemy
