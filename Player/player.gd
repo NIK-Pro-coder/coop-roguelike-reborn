@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var stat_tracker: StatTracker = %StatTracker
 @onready var anim: AnimationPlayer = %Anim
 @onready var spell_selected_txt: RichTextLabel = %SpellSelectedTxt
 
@@ -151,6 +152,7 @@ func handle_spells(delta: float) -> void:
     
     s.cast(self, dir)
     spell_cd[s] = s.cooldown
+    stat_tracker.add_stat_change(StatTracker.Stats.Health, 1.0, 0.0)
     
 func _physics_process(delta: float) -> void:
   handle_move(delta)
