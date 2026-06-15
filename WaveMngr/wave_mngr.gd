@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
   if len(enemies_spawned) <= 0:
     wave_cd.text = "Starting in %.1fs" % wave_cooldown
   else:
-    wave_cd.text = "%s enemie%s left" % [len(enemies_spawned), "" if len(enemies_spawned) == 1 else "s"]
+    wave_cd.text = "%s enem%s left" % [len(enemies_spawned), "y" if len(enemies_spawned) == 1 else "ies"]
   
   var idx: int = 0
   for i: Enemy in enemies_spawned:

@@ -9,7 +9,7 @@ class_name Enemy
 var target: Player
 var retarget: float = .25
 
-var speed: float = 250:
+var speed: float = 200:
   get(): return speed * stat_tracker.speed_mult + stat_tracker.speed_flat
 var health: float = 100:
   get(): return health * stat_tracker.health_mult + stat_tracker.health_flat
