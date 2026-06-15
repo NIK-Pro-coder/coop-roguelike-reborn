@@ -151,7 +151,7 @@ func handle_spells(delta: float) -> void:
     
     s.cast(self, dir)
     spell_cd[s] = s.cooldown
-  
+    
 func _physics_process(delta: float) -> void:
   handle_move(delta)
   handle_roll(delta)

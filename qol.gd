@@ -21,3 +21,11 @@ func find_hp_comp(from: Node) -> Node:
   return find_with_criteria(from, func(x: Node) -> bool:
     return x is HpComp
   )
+
+var cam: MainCam = null
+
+func _process(_delta: float) -> void:
+  if !cam:
+    cam = find_with_criteria(get_tree().get_root(), func(x: Node) -> bool:
+      return x is MainCam
+    )
