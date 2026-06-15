@@ -50,13 +50,20 @@ func get_mult_changes_to_stat(stat: Stats) -> float:
   
 var health_flat: float = 0.0:
   get(): return get_flat_changes_to_stat(Stats.Health)
-var health_mult: float = 1.0
-var damage_flat: float = 0.0
-var damage_mult: float = 1.0
-var defence_flat: float = 0.0
-var defence_mult: float = 1.0
-var speed_flat: float = 0.0
-var speed_mult: float = 1.0
+var health_mult: float = 1.0:
+  get(): return get_mult_changes_to_stat(Stats.Health)
+var damage_flat: float = 0.0:
+  get(): return get_flat_changes_to_stat(Stats.Damage)
+var damage_mult: float = 1.0:
+  get(): return get_mult_changes_to_stat(Stats.Damage)
+var defence_flat: float = 0.0:
+  get(): return get_flat_changes_to_stat(Stats.Defence)
+var defence_mult: float = 1.0:
+  get(): return get_mult_changes_to_stat(Stats.Defence)
+var speed_flat: float = 0.0:
+  get(): return get_flat_changes_to_stat(Stats.Speed)
+var speed_mult: float = 1.0:
+  get(): return get_mult_changes_to_stat(Stats.Speed)
 
 func add_stat_change(stat: Stats, flat: float, mult: float) -> void:
   var handle: String = get_new_handle()
@@ -68,5 +75,21 @@ func add_stat_change(stat: Stats, flat: float, mult: float) -> void:
   
   stat_changes[handle] = change
 
+func add_hp_change(flat: float, mult: float) -> void: add_stat_change(Stats.Health, flat, mult)
+func add_flat_hp_change(change: float) -> void: add_hp_change(change, 0.0)
+func add_mult_hp_change(change: float) -> void: add_hp_change(0.0, change)
+
+func add_dmg_change(flat: float, mult: float) -> void: add_stat_change(Stats.Damage, flat, mult)
+func add_flat_dmg_change(change: float) -> void: add_dmg_change(change, 0.0)
+func add_mult_dmg_change(change: float) -> void: add_dmg_change(0.0, change)
+
+func add_def_change(flat: float, mult: float) -> void: add_stat_change(Stats.Defence, flat, mult)
+func add_flat_def_change(change: float) -> void: add_def_change(change, 0.0)
+func add_mult_def_change(change: float) -> void: add_def_change(0.0, change)
+
+func add_spd_change(flat: float, mult: float) -> void: add_stat_change(Stats.Speed, flat, mult)
+func add_flat_spd_change(change: float) -> void: add_spd_change(change, 0.0)
+func add_mult_spd_change(change: float) -> void: add_spd_change(0.0, change)
+
 func _process(delta: float) -> void:
-  print(health_flat)
+  print(health_mult)
