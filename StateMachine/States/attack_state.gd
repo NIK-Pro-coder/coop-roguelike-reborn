@@ -1,6 +1,8 @@
 extends State
 class_name AttackState
 
+var projectile_scene: PackedScene = load("uid://ctb4540n8d3yv")
+
 @export var max_dist: float = 150.0
 
 var attack_cooldown: float = 1.5
@@ -16,12 +18,10 @@ func update(delta: float, enemy: Enemy) -> void:
   
   attack_cooldown -= delta
   if attack_cooldown <= 0.0:
-    var proj: Projectile = Projectile.new()
+    var proj: Projectile = projectile_scene.instantiate()
     proj.global_position = enemy.global_position
-    proj.dir = (enemy.target.global_position + enemy.target.velocity * diff.length() / 300 - enemy.global_position).normalized()
-    proj.speed = 300
+    proj.dir = (enemy.target.global_position + enemy.target.velocity * diff.length() / proj.speed - enemy.global_position).normalized()
     proj.damage = enemy.damage
-    proj.team = Hitbox.Teams.Enemy
     proj.attacker = enemy
     
     Qol.add_to_tree(proj)

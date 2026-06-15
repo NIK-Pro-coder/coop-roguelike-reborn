@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cssirjrdiah6y"]
+[gd_scene format=3 uid="uid://ctb4540n8d3yv"]
 
-[ext_resource type="Script" uid="uid://8vaptn5jq3c4" path="res://Spells/FireSpell/fireball.gd" id="1_u2je5"]
-[ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="2_u2je5"]
+[ext_resource type="Script" uid="uid://bwbohng3o31jq" path="res://Hitbox/projectile.gd" id="1_e1yfv"]
+[ext_resource type="Texture2D" uid="uid://0msh4i528jdl" path="res://icon.svg" id="2_bg2hb"]
 
 [sub_resource type="Gradient" id="Gradient_s7iqt"]
 offsets = PackedFloat32Array(0, 0.1634981, 0.3269962, 0.7186312, 1)
@@ -37,18 +37,19 @@ scale_curve = SubResource("CurveTexture_37hjv")
 color = Color(1, 1, 1, 0.5)
 color_ramp = SubResource("GradientTexture1D_u2je5")
 
-[node name="fireball" type="CharacterBody2D" unique_id=1160919186]
-script = ExtResource("1_u2je5")
-speed = 400.0
-size = Vector2(16, 16)
+[node name="EnemyProjectile" type="CharacterBody2D" unique_id=676097132]
+script = ExtResource("1_e1yfv")
+speed = 300.0
+team = 2
 lifetime = 5.0
 metadata/_custom_type_script = "uid://bwbohng3o31jq"
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=550256534]
+[node name="Icon" type="Sprite2D" parent="." unique_id=1683962487]
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.09, 0.09)
-texture = ExtResource("2_u2je5")
+texture = ExtResource("2_bg2hb")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=20977816]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=479048669]
 amount = 32
 lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_q22a5")
