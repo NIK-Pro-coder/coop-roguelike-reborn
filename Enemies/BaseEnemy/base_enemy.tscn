@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bdmjqu23lmdh" path="res://Enemies/BaseEnemy/base_enemy.gd" id="1_i5m5u"]
 [ext_resource type="Script" uid="uid://dqi86iea56asx" path="res://StateMachine/state_machine.gd" id="2_wg550"]
 [ext_resource type="Script" uid="uid://cvb3spfna5gpm" path="res://Hitbox/hurtbox.gd" id="6_6r630"]
+[ext_resource type="Script" uid="uid://biirni03qe6i" path="res://StatTracker/stat_tracker.gd" id="6_oojbt"]
 [ext_resource type="Script" uid="uid://bpbk0fsb4o1i3" path="res://Components/Health/hp_comp.gd" id="7_oojbt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8kltk"]
@@ -69,6 +70,11 @@ text = "State: Skibidi
 Target: Balls"
 fit_content = true
 horizontal_alignment = 1
+
+[node name="StatTracker" type="Node" parent="." unique_id=1261290302]
+unique_name_in_owner = true
+script = ExtResource("6_oojbt")
+metadata/_custom_type_script = "uid://biirni03qe6i"
 
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="died" from="HpComp" to="." method="died"]

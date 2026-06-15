@@ -4,11 +4,19 @@ class_name Enemy
 @onready var nav_agent: NavigationAgent2D = %NavAgent
 @onready var debug_state: RichTextLabel = %DebugState
 @onready var state_machine: StateMachine = %StateMachine
+@onready var stat_tracker: StatTracker = %StatTracker
 
 var target: Player
 var retarget: float = .25
 
-var speed: float = 200.0
+var speed: float = 250:
+  get(): return speed * stat_tracker.speed_mult + stat_tracker.speed_flat
+var health: float = 100:
+  get(): return health * stat_tracker.health_mult + stat_tracker.health_flat
+var damage: float = 10:
+  get(): return damage * stat_tracker.damage_mult + stat_tracker.damage_flat
+var defence: float = 0:
+  get(): return defence * stat_tracker.defence_mult + stat_tracker.defence_flat
 
 func grab_target() -> void:
   var dist: float = -1.0
