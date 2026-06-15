@@ -4,6 +4,7 @@ class_name Player
 @onready var stat_tracker: StatTracker = %StatTracker
 @onready var anim: AnimationPlayer = %Anim
 @onready var spell_selected_txt: RichTextLabel = %SpellSelectedTxt
+@onready var hp_comp: HpComp = %HpComp
 
 #region MulitInput warppers
 
@@ -169,4 +170,4 @@ func _physics_process(delta: float) -> void:
   
   move_and_slide()
   
-  print(speed)
+  hp_comp.max_hp = health
