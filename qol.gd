@@ -22,6 +22,20 @@ func find_hp_comp(from: Node) -> Node:
     return x is HpComp
   )
 
+func create_timer(time: float, timeout: Callable) -> Timer:
+  var t: Timer = Timer.new()
+  t.autostart = true
+  t.wait_time = time
+  
+  get_tree().get_root().add_child.call_deferred(t)
+  
+  t.timeout.connect(func() -> void:
+    t.queue_free()
+    timeout.call()
+  )
+  
+  return t
+
 var cam: MainCam = null
 
 func _process(_delta: float) -> void:

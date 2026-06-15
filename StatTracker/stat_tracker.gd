@@ -65,7 +65,7 @@ var speed_flat: float = 0.0:
 var speed_mult: float = 1.0:
   get(): return get_mult_changes_to_stat(Stats.Speed)
 
-func add_stat_change(stat: Stats, flat: float, mult: float) -> void:
+func add_stat_change(stat: Stats, flat: float, mult: float, duration: float) -> String:
   var handle: String = get_new_handle()
   
   var change: StatChange = StatChange.new()
@@ -74,22 +74,33 @@ func add_stat_change(stat: Stats, flat: float, mult: float) -> void:
   change.mult_change = mult
   
   stat_changes[handle] = change
+  
+  if duration > 0.0:
+    Qol.create_timer(duration, cancel_stat_change.bind(handle))
+  
+  return handle
 
-func add_hp_change(flat: float, mult: float) -> void: add_stat_change(Stats.Health, flat, mult)
-func add_flat_hp_change(change: float) -> void: add_hp_change(change, 0.0)
-func add_mult_hp_change(change: float) -> void: add_hp_change(0.0, change)
+func cancel_stat_change(handle: String) -> void:
+  if !handle in stat_changes:
+    return
+  
+  stat_changes.erase(handle)
 
-func add_dmg_change(flat: float, mult: float) -> void: add_stat_change(Stats.Damage, flat, mult)
-func add_flat_dmg_change(change: float) -> void: add_dmg_change(change, 0.0)
-func add_mult_dmg_change(change: float) -> void: add_dmg_change(0.0, change)
+func add_hp_change(flat: float, mult: float, duration: float = -1) -> String: return add_stat_change(Stats.Health, flat, mult, duration)
+func add_flat_hp_change(change: float, duration: float = -1) -> String: return add_hp_change(change, 0.0, duration)
+func add_mult_hp_change(change: float, duration: float = -1) -> String: return add_hp_change(0.0, change, duration)
 
-func add_def_change(flat: float, mult: float) -> void: add_stat_change(Stats.Defence, flat, mult)
-func add_flat_def_change(change: float) -> void: add_def_change(change, 0.0)
-func add_mult_def_change(change: float) -> void: add_def_change(0.0, change)
+func add_dmg_change(flat: float, mult: float, duration: float = -1) -> String: return add_stat_change(Stats.Damage, flat, mult, duration)
+func add_flat_dmg_change(change: float, duration: float = -1) -> String: return add_dmg_change(change, 0.0, duration)
+func add_mult_dmg_change(change: float, duration: float = -1) -> String: return add_dmg_change(0.0, change, duration)
 
-func add_spd_change(flat: float, mult: float) -> void: add_stat_change(Stats.Speed, flat, mult)
-func add_flat_spd_change(change: float) -> void: add_spd_change(change, 0.0)
-func add_mult_spd_change(change: float) -> void: add_spd_change(0.0, change)
+func add_def_change(flat: float, mult: float, duration: float = -1) -> String: return add_stat_change(Stats.Defence, flat, mult, duration)
+func add_flat_def_change(change: float, duration: float = -1) -> String: return add_def_change(change, 0.0, duration)
+func add_mult_def_change(change: float, duration: float = -1) -> String: return add_def_change(0.0, change, duration)
+
+func add_spd_change(flat: float, mult: float, duration: float = -1) -> String: return add_stat_change(Stats.Speed, flat, mult, duration)
+func add_flat_spd_change(change: float, duration: float = -1) -> String: return add_spd_change(change, 0.0, duration)
+func add_mult_spd_change(change: float, duration: float = -1) -> String: return add_spd_change(0.0, change, duration)
 
 func _process(delta: float) -> void:
   print(health_mult)
