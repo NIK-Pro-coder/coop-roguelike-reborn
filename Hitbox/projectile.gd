@@ -17,11 +17,14 @@ class_name Projectile
 @export_range(-1, 5, 1, "or_greater") var piercing: int = -1
 var pierced: int = 0
 
+var attacker: Node
+
 var hitbox: DmgHitbox
 
 func _ready() -> void:
   hitbox = DmgHitbox.new()
   hitbox.damage = damage
+  hitbox.attacker = attacker
   add_child(hitbox)
   hitbox.hit.connect(func(what: Hurtbox) -> void:
     if piercing >= 0:

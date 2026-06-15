@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://deeokg0jf854b" path="res://Spells/base_spell.gd" id="2_gwnis"]
 [ext_resource type="Resource" uid="uid://bvyg5kk82yp1f" path="res://Spells/FireSpell/fire_spell.tres" id="3_k53q1"]
 [ext_resource type="Theme" uid="uid://dlrj8hj0dxq8r" path="res://main_theme.tres" id="5_k53q1"]
+[ext_resource type="Script" uid="uid://biirni03qe6i" path="res://StatTracker/stat_tracker.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://bpbk0fsb4o1i3" path="res://Components/Health/hp_comp.gd" id="7_vtle1"]
+[ext_resource type="Script" uid="uid://cvb3spfna5gpm" path="res://Hitbox/hurtbox.gd" id="8_od3ui"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
 radius = 16.0
@@ -76,3 +79,30 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 root_node = NodePath("../SpellSelectedTxt")
 libraries/ = SubResource("AnimationLibrary_od3ui")
+
+[node name="StatTracker" type="Node" parent="." unique_id=2147140678]
+unique_name_in_owner = true
+script = ExtResource("6_fhl08")
+metadata/_custom_type_script = "uid://biirni03qe6i"
+
+[node name="HpComp" type="Node" parent="." unique_id=11041316 node_paths=PackedStringArray("hp_bar")]
+unique_name_in_owner = true
+script = ExtResource("7_vtle1")
+use_hp_bar = true
+hp_bar = NodePath("../ProgressBar")
+metadata/_custom_type_script = "uid://bpbk0fsb4o1i3"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1082492863]
+offset_left = -16.0
+offset_top = 20.0
+offset_right = 16.0
+offset_bottom = 24.0
+value = 99.96
+show_percentage = false
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=909078742]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_od3ui")
+size = Vector2(24, 24)
+metadata/_custom_type_script = "uid://cvb3spfna5gpm"

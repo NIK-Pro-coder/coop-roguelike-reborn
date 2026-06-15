@@ -1,8 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var stat_tracker: StatTracker = %StatTracker
 @onready var anim: AnimationPlayer = %Anim
 @onready var spell_selected_txt: RichTextLabel = %SpellSelectedTxt
+@onready var hp_comp: HpComp = %HpComp
 
 #region MulitInput warppers
 
@@ -24,7 +26,15 @@ func get_action_vector(negx: String, posx: String, negy: String, posy: String) -
 
 #region Player stats
 
-var speed: float = 250
+var speed: float = 250:
+  get(): return speed * stat_tracker.speed_mult + stat_tracker.speed_flat
+var health: float = 100:
+  get(): return health * stat_tracker.health_mult + stat_tracker.health_flat
+var damage: float = 10:
+  get(): return damage * stat_tracker.damage_mult + stat_tracker.damage_flat
+var defence: float = 0:
+  get(): return defence * stat_tracker.defence_mult + stat_tracker.defence_flat
+
 var roll_duration: float = .25
 var roll_cooldown: float = .15
 
@@ -151,6 +161,7 @@ func handle_spells(delta: float) -> void:
     
     s.cast(self, dir)
     spell_cd[s] = s.cooldown
+    stat_tracker.add_mult_spd_change(25, 5.0)
     
 func _physics_process(delta: float) -> void:
   handle_move(delta)
@@ -158,3 +169,5 @@ func _physics_process(delta: float) -> void:
   handle_spells(delta)
   
   move_and_slide()
+  
+  hp_comp.max_hp = health
