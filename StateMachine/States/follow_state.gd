@@ -1,7 +1,6 @@
 extends State
 class_name FollowState
 
-@export var speed: float = 200.0
 @export var target_dist: float = 100.0
 
 func enter(enemy: Enemy) -> void:

@@ -11,8 +11,10 @@ initial_state = NodePath("Follow")
 
 [node name="Follow" type="Node" parent="StateMachine" index="0" unique_id=1654314794]
 script = ExtResource("4_45isc")
+target_dist = 300.0
 metadata/_custom_type_script = "uid://bm35bt0prpugp"
 
 [node name="Attack" type="Node" parent="StateMachine" index="1" unique_id=966613507]
 script = ExtResource("5_bmnry")
+max_dist = 400.0
 metadata/_custom_type_script = "uid://dve227ngbfwp4"

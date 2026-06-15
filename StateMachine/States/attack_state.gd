@@ -16,5 +16,14 @@ func update(delta: float, enemy: Enemy) -> void:
   
   attack_cooldown -= delta
   if attack_cooldown <= 0.0:
-    print("hi")
+    var proj: Projectile = Projectile.new()
+    proj.global_position = enemy.global_position
+    proj.dir = -diff.normalized()
+    proj.speed = 100
+    proj.damage = enemy.damage
+    proj.team = Hitbox.Teams.Enemy
+    proj.attacker = enemy
+    
+    Qol.add_to_tree(proj)
+    
     attack_cooldown = 1.5

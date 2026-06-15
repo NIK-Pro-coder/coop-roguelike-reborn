@@ -171,3 +171,6 @@ func _physics_process(delta: float) -> void:
   move_and_slide()
   
   hp_comp.max_hp = health
+
+func _on_hp_comp_died() -> void:
+  queue_free()

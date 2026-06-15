@@ -36,6 +36,9 @@ func create_timer(time: float, timeout: Callable) -> Timer:
   
   return t
 
+func add_to_tree(node: Node) -> void:
+  get_tree().get_root().add_child.call_deferred(node)
+
 var cam: MainCam = null
 
 func _process(_delta: float) -> void:

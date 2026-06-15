@@ -25,6 +25,7 @@ func _ready() -> void:
   hitbox = DmgHitbox.new()
   hitbox.damage = damage
   hitbox.attacker = attacker
+  hitbox.team = team
   add_child(hitbox)
   hitbox.hit.connect(func(what: Hurtbox) -> void:
     if piercing >= 0:
