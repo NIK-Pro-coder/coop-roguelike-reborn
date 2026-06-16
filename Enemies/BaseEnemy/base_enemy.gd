@@ -76,3 +76,12 @@ var explosion: PackedScene = load("uid://bs3abt7bmsvbs")
 
 func died() -> void:
   queue_free()
+  
+  if kill_credit:
+    kill_credit.trinket_on_kill(self)
+
+var kill_credit: Player = null
+
+func _on_hurtbox_got_hit(from: Hitbox) -> void:
+  if from.attacker is Player:
+    kill_credit = from.attacker

@@ -19,7 +19,7 @@ var stack_level: float = 1.0
 @warning_ignore_start("unused_parameter")
 
 func equip(player: Player) -> void: pass
-func unequip(player: Player) -> void: pass
+func unequip(player: Player) -> void: print("Unequipped")
 func move(player: Player) -> void: pass
 func attack(player: Player, spell: Spell) -> Spell: return spell
 func on_hit(player: Player, enemy: Enemy) -> void: pass

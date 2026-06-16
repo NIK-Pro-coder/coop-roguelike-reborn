@@ -108,3 +108,5 @@ size = Vector2(24, 24)
 metadata/_custom_type_script = "uid://cvb3spfna5gpm"
 
 [connection signal="died" from="HpComp" to="." method="_on_hp_comp_died"]
+[connection signal="healed" from="HpComp" to="." method="_on_hp_comp_healed"]
+[connection signal="hurt" from="HpComp" to="." method="_on_hp_comp_hurt"]
