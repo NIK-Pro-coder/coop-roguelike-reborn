@@ -9,7 +9,7 @@ class_name Player
 @export var device: int = -1
 
 func _ready() -> void:
-  equip_trinket(load("uid://fcupoihhciil"))
+  equip_trinket(load("uid://m8g8ea1sotot"))
   
   var new_sp: Array[Spell] = []
   for i: Spell in spells:

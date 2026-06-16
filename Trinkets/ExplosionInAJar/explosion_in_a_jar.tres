@@ -1,0 +1,9 @@
+[gd_resource type="Resource" format=3 uid="uid://m8g8ea1sotot"]
+
+[ext_resource type="Script" uid="uid://il2ugjudqv2b" path="res://Trinkets/ExplosionInAJar/explosion_in_a_jar.gd" id="1_w60y2"]
+
+[resource]
+script = ExtResource("1_w60y2")
+name = "Explosion In A Jar"
+description = "Enemies explode on kill"
+metadata/_custom_type_script = "uid://bwy8gfhdgi64a"
