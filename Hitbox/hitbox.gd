@@ -37,3 +37,6 @@ func _process(_delta: float) -> void:
     if not iframe_group in i.iframes or i.iframes[iframe_group] <= 0 :
       i.hit(self)
       hit.emit(i)
+      
+      if attacker and attacker is Player and i.get_parent() is Enemy:
+        attacker.trinket_on_hit(i.get_parent())

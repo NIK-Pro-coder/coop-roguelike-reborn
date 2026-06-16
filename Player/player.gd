@@ -6,6 +6,87 @@ class_name Player
 @onready var spell_selected_txt: RichTextLabel = %SpellSelectedTxt
 @onready var hp_comp: HpComp = %HpComp
 
+@export var device: int = -1
+
+func _ready() -> void:
+  equip_trinket(load("uid://m8g8ea1sotot"))
+  
+  var new_sp: Array[Spell] = []
+  for i: Spell in spells:
+    var s: Spell = i.duplicate()
+    
+    new_sp.append(s)
+    spell_cd[s] = 0.0
+
+  spells.clear()
+  spells = new_sp
+
+#region Trinket
+
+@export var trinkets: Array[Trinket] = []
+
+func equip_trinket(trinket: Trinket) -> void:
+  for i: Trinket in trinkets:
+    if i.name == trinket.name:
+      i.unequip(self)
+      i.stack_level += trinket.stack_level
+      i.equip(self)
+      
+      return
+  
+  var t: Trinket = trinket.duplicate()
+  
+  trinkets.append(t)
+  
+  t.equip(self)
+
+func unequip_trinket(trinket: Trinket) -> void:
+  for i: Trinket in trinkets:
+    if i.name == trinket.name:
+      i.unequip(self)
+      i.stack_level -= trinket.stack_level
+      
+      if i.stack_level > 0.0:
+        i.equip(self)
+      else:
+        trinkets.erase(i)
+      
+      return
+
+func trinket_move() -> void:
+  for i: Trinket in trinkets:
+    i.move(self)
+
+func trinket_attack(s: Spell) -> Spell:
+  var new_s: Spell = s
+  
+  for i: Trinket in trinkets:
+    new_s = i.attack(self, new_s)
+  
+  return new_s
+
+func trinket_player_hit(amt: float) -> void:
+  for i: Trinket in trinkets:
+    i.player_hit(self, amt)
+
+func trinket_player_healed(amt: float) -> void:
+  for i: Trinket in trinkets:
+    i.player_healed(self, amt)
+
+func trinket_update(delta: float) -> void:
+  for i: Trinket in trinkets:
+    i.update(self, delta)
+
+func trinket_on_hit(enemy: Enemy) -> void:
+  for i: Trinket in trinkets:
+    i.on_hit(self, enemy)
+
+func trinket_on_kill(enemy: Enemy) -> void:
+  for i: Trinket in trinkets:
+    i.on_kill(self, enemy)
+
+#endregion
+
 #region MulitInput warppers
 
 func get_action_strength(action_name: String) -> float:
@@ -21,8 +102,6 @@ func get_action_vector(negx: String, posx: String, negy: String, posy: String) -
   return MultiInput.get_action_vector(negx, posx, negy, posy, device)
 
 #endregion
-
-@export var device: int = -1
 
 #region Player stats
 
@@ -40,16 +119,7 @@ var roll_cooldown: float = .15
 
 #endregion
 
-func _ready() -> void:
-  var new_sp: Array[Spell] = []
-  for i: Spell in spells:
-    var s: Spell = i.duplicate()
-    
-    new_sp.append(s)
-    spell_cd[s] = 0.0
-
-  spells.clear()
-  spells = new_sp
+#region Movement
 
 var last_move_dir: Vector2
 
@@ -91,6 +161,10 @@ func handle_roll(delta: float) -> void:
     return
 
   velocity = last_move_dir * speed * 2.5 * delta * 60
+
+#endregion
+
+#region Spellcasting
 
 @export var spells: Array[Spell] = []
 var spell_cd: Dictionary[Spell, float] = {}
@@ -159,17 +233,30 @@ func handle_spells(delta: float) -> void:
         
     dir = new_dir
     
-    s.cast(self, dir)
+    trinket_attack(s).cast(self, dir)
     spell_cd[s] = s.cooldown
-    
+
+#endregion
+
 func _physics_process(delta: float) -> void:
+  trinket_update(delta)
+  
   handle_move(delta)
   handle_roll(delta)
   handle_spells(delta)
   
+  var last_pos: Vector2 = global_position
   move_and_slide()
+  if last_pos != global_position:
+    trinket_move()
   
   hp_comp.max_hp = health
 
 func _on_hp_comp_died() -> void:
   queue_free()
+
+func _on_hp_comp_hurt(amt: float) -> void:
+  trinket_player_hit(amt)
+
+func _on_hp_comp_healed(amt: float) -> void:
+  trinket_player_healed(amt)

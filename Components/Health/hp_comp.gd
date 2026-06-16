@@ -43,9 +43,13 @@ func _ready() -> void:
 
 signal died
 signal hurt(amt: float)
+signal healed(amt: float)
 
 func damage(amt: float) -> void:
   if amt == 0.0:
+    return
+  
+  if (amt > 0.0 and hp <= 0.0) or (amt < 0.0 and hp >= max_hp):
     return
   
   var num: DmgNumber = DmgNumber.new()
@@ -58,8 +62,10 @@ func damage(amt: float) -> void:
   
   if amt > 0.0:
     hurt.emit(amt)
+  else:
+    healed.emit(amt)
   
-  if hp < 0:
+  if hp <= 0:
     died.emit()
 
   hp = clamp(hp, 0.0, max_hp)
