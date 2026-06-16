@@ -6,6 +6,40 @@ class_name Player
 @onready var spell_selected_txt: RichTextLabel = %SpellSelectedTxt
 @onready var hp_comp: HpComp = %HpComp
 
+@export var device: int = -1
+
+#region Trinket
+
+@export var trinkets: Array[Trinket] = []
+
+func add_trinket(trinket: Trinket) -> void:
+  for i: Trinket in trinkets:
+    if i.name == trinket.name:
+      i.unequip(self)
+      i.stack_level += trinket.stack_level
+      i.equip(self)
+      
+      return
+  
+  var t: Trinket = trinket.duplicate()
+  
+  trinkets.append(t)
+  
+  t.equip(self)
+
+func unequip_trinket(trinket: Trinket) -> void:
+  for i: Trinket in trinkets:
+    if i.name == trinket.name:
+      i.unequip(self)
+      i.stack_level -= trinket.stack_level
+      
+      if i.stack_level > 0.0:
+        i.equip(self)
+      
+      return
+
+#endregion
+
 #region MulitInput warppers
 
 func get_action_strength(action_name: String) -> float:
@@ -21,8 +55,6 @@ func get_action_vector(negx: String, posx: String, negy: String, posy: String) -
   return MultiInput.get_action_vector(negx, posx, negy, posy, device)
 
 #endregion
-
-@export var device: int = -1
 
 #region Player stats
 
@@ -50,6 +82,8 @@ func _ready() -> void:
 
   spells.clear()
   spells = new_sp
+
+#region Movement
 
 var last_move_dir: Vector2
 
@@ -91,6 +125,10 @@ func handle_roll(delta: float) -> void:
     return
 
   velocity = last_move_dir * speed * 2.5 * delta * 60
+
+#endregion
+
+#region Spellcasting
 
 @export var spells: Array[Spell] = []
 var spell_cd: Dictionary[Spell, float] = {}
@@ -161,7 +199,9 @@ func handle_spells(delta: float) -> void:
     
     s.cast(self, dir)
     spell_cd[s] = s.cooldown
-    
+
+#endregion
+
 func _physics_process(delta: float) -> void:
   handle_move(delta)
   handle_roll(delta)
