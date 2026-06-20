@@ -99,14 +99,19 @@ func spawn_wave() -> void:
 
 func _ready() -> void:
   wave_cooldown = grace_period * 2
-  begin_waves(20)
 
 func _process(delta: float) -> void:
-  wave_text.text = "- Wave %s -" % (wave_num if len(enemies_spawned) > 0 else wave_num + 1)
-  if len(enemies_spawned) <= 0:
-    wave_cd.text = "Starting in %.1fs" % wave_cooldown
+  if waves_to_spawn > 0:
+    wave_text.visible = true
+    wave_cd.visible = true
+    wave_text.text = "- Wave %s -" % (wave_num if len(enemies_spawned) > 0 else wave_num + 1)
+    if len(enemies_spawned) <= 0:
+      wave_cd.text = "Starting in %.1fs" % wave_cooldown
+    else:
+      wave_cd.text = "%s enem%s left" % [len(enemies_spawned), "y" if len(enemies_spawned) == 1 else "ies"]
   else:
-    wave_cd.text = "%s enem%s left" % [len(enemies_spawned), "y" if len(enemies_spawned) == 1 else "ies"]
+    wave_text.visible = false
+    wave_cd.visible = false
   
   var idx: int = 0
   for i: Enemy in enemies_spawned:
@@ -129,4 +134,4 @@ func _process(delta: float) -> void:
   if wave_cooldown > 0:
     return
   
-  spawn_wave()
+  await spawn_wave()

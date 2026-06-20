@@ -41,8 +41,3 @@ func get_action_vector(negx: String, posx: String, negy: String, posy: String, d
     get_action_axis(negx, posx, device),
     get_action_axis(negy, posy, device),
   ).normalized()
-
-func _ready() -> void:
-  print("Connected joypads:")
-  for i: int in Input.get_connected_joypads():
-    print("  %s. %s" % [i, Input.get_joy_name(i)])
