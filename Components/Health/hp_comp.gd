@@ -4,11 +4,12 @@ extends Node
 class_name HpComp
 
 func _process(_delta: float) -> void:
-  if !use_hp_bar:
+  if !use_hp_bar or !hp_bar:
     return
 
   hp_bar.max_value = max_hp
   hp_bar.value = hp_bar.value * .9 + hp * .1
+  hp_bar.visible = hp < max_hp
 
 @export var max_hp: float = 100.0:
   set(val):
