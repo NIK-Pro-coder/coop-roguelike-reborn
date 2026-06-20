@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://bbda4h7u3rerl"]
 
-[ext_resource type="PackedScene" uid="uid://cdhqce348kp2a" path="res://Player/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c74jbybnjf2wb" path="res://WaveMngr/wave_mngr.tscn" id="3_1bvp3"]
 [ext_resource type="TileSet" uid="uid://c2jce6753fhst" path="res://main_tileset.tres" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://ba2u0m203hgnh" path="res://main_cam.gd" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dptysnt2vpcyl" path="res://Lobby/lobby.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bqav7ajuapjsp" path="res://Hitbox/dmg_hitbox.gd" id="5_lquwl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
@@ -14,12 +14,10 @@ agent_radius = 16.0
 
 [node name="Main" type="Node" unique_id=1014945260]
 
-[node name="Player" parent="." unique_id=1584554355 instance=ExtResource("1_ig7tw")]
-position = Vector2(80, 608)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=467815564]
 
-[node name="Player2" parent="." unique_id=111660931 instance=ExtResource("1_ig7tw")]
-position = Vector2(88, 216)
-device = 0
+[node name="Lobby" parent="CanvasLayer" unique_id=103288024 instance=ExtResource("5_7mycd")]
+visible = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=637748730]
 navigation_polygon = SubResource("NavigationPolygon_h2yge")
