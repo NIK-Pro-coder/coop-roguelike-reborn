@@ -12,6 +12,9 @@ class_name WaveMngr
 @export_range(1.0, 10.0, 0.1, "or_greater") var extra_points: float = 2.5
 ## The time to wait after a wave before spawning the next
 @export_range(0.0, 5.0, 0.1, "or_greater", "suffix:s") var grace_period: float = 2.5
+## The maximum point value to spawn before starting to buff enemies
+@export var max_value: float = 5.0
+@export var buff_cost: float = 1
 
 @export var spawn_around: Vector2 = Vector2.ZERO
 @export var spawn_radius: float = 500
@@ -39,8 +42,14 @@ func spawn_wave() -> void:
   wave_num += 1
   waves_to_spawn -= 1
   
-  wave_spawned.emit()
   print("Spawned wave %s (points: %s)" % [wave_num, points])
+  
+  var buff_points: float = max(0.0, points - max_value)
+  points -= buff_points
+  
+  print(buff_points)
+  
+  wave_spawned.emit()
   
   while points > 0.0:
     var available: Array[EnemyInfo] = pool.enemies.filter(func(x: EnemyInfo) -> bool:
@@ -63,6 +72,30 @@ func spawn_wave() -> void:
     get_tree().get_root().add_child.call_deferred(enemy)
     
     enemies_spawned.append(enemy)
+  
+  await get_tree().process_frame
+  
+  while buff_points > 0.0:
+    for i: Enemy in enemies_spawned:
+      var r: int = randi_range(0, 3)
+      
+      if r == 0:
+        i.stat_tracker.add_mult_hp_change(5)
+        print("+hp")
+      elif r == 1:
+        i.stat_tracker.add_mult_def_change(5)
+        print("+def")
+      elif r == 2:
+        i.stat_tracker.add_mult_dmg_change(5)
+        print("+dmg")
+      elif r == 3:
+        i.stat_tracker.add_mult_spd_change(5)
+        print("+spd")
+      
+      buff_points -= buff_cost
+      
+      if buff_points <= 0.0:
+        break
 
 func _ready() -> void:
   wave_cooldown = grace_period * 2
