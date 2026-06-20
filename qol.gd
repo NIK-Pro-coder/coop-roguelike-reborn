@@ -46,3 +46,9 @@ func _process(_delta: float) -> void:
     cam = find_with_criteria(get_tree().get_root(), func(x: Node) -> bool:
       return x is MainCam
     )
+
+func pause_game() -> void:
+  get_tree().paused = true
+  
+func unpause_game() -> void:
+  get_tree().paused = false

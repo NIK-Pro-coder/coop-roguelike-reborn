@@ -99,7 +99,6 @@ func spawn_wave() -> void:
 
 func _ready() -> void:
   wave_cooldown = grace_period * 2
-  begin_waves(20)
 
 func _process(delta: float) -> void:
   wave_text.text = "- Wave %s -" % (wave_num if len(enemies_spawned) > 0 else wave_num + 1)
