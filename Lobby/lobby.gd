@@ -2,7 +2,9 @@ extends Control
 class_name Lobby
 
 @onready var player_container: HBoxContainer = %PlayerContainer
+@onready var start_in: RichTextLabel = %StartIn
 
+var player_scene: PackedScene = load("uid://cdhqce348kp2a")
 var lobby_player_scene: PackedScene = load("uid://boxavn6kx5d4w")
 
 func _ready() -> void:
@@ -93,10 +95,43 @@ func update_players() -> void:
     
     (player_container.get_children()[i] as LobbyPlayer).info = info
 
-func _process(_delta: float) -> void:
+var start_time: float = 0.0
+var is_starting: bool = false
+
+func _process(delta: float) -> void:
   handle_joycons()
   handle_join()
   handle_leave()
   handle_ready()
   
   update_players()
+  
+  var can_start: bool = len(players_joined) > 0
+  for i: LobbyPlayerInfo in players_joined:
+    if !i.is_ready:
+      can_start = false
+      break
+  
+  if can_start:
+    if !is_starting:
+      start_time = 5
+      is_starting = true
+      
+    start_time -= delta
+  else:
+    is_starting = false
+  
+  start_in.visible = is_starting
+  start_in.text = "Starting in %ss" % int(ceil(start_time))
+  
+  if start_time <= 0.0 and is_starting:
+    for i: LobbyPlayerInfo in players_joined:
+      var p: Player = player_scene.instantiate()
+      
+      p.device = i.device_id
+      
+      Qol.add_to_tree(p)
+    
+    Qol.unpause_game()
+    queue_free()
+    Qol.wave_mngr.begin_waves(20)
