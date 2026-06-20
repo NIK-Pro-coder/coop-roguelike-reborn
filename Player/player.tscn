@@ -107,6 +107,7 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("8_od3ui")
 size = Vector2(24, 24)
+active = false
 metadata/_custom_type_script = "uid://cvb3spfna5gpm"
 
 [connection signal="died" from="HpComp" to="." method="_on_hp_comp_died"]

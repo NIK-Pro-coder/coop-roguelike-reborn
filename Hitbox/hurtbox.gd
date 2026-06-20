@@ -10,7 +10,7 @@ enum Teams {
 
 @export var size: Vector2 = Vector2(20, 20)
 @export var team: Teams = Teams.Player
-@export var active: bool = false
+@export var active: bool = true
 
 var shape: CollisionShape2D
 var iframes: Dictionary[String, float] = {}
