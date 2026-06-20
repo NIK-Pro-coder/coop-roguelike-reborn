@@ -277,6 +277,8 @@ func _on_hp_comp_died() -> void:
   is_ghost = true
   remove_from_group("allies")
   hp_comp.full_heal(false)
+  
+  Qol.party_mngr.request_revive(self)
 
 func _on_hp_comp_hurt(amt: float) -> void:
   trinket_player_hit(amt)
