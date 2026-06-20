@@ -46,6 +46,12 @@ signal died
 signal hurt(amt: float)
 signal healed(amt: float)
 
+func kill() -> void:
+  damage(max_hp)
+
+func full_heal() -> void:
+  damage(-max_hp)
+
 func damage(amt: float) -> void:
   if amt == 0.0:
     return

@@ -20,7 +20,10 @@ func update(delta: float, enemy: Enemy) -> void:
   if attack_cooldown <= 0.0:
     var proj: Projectile = projectile_scene.instantiate()
     proj.global_position = enemy.global_position
-    proj.dir = (enemy.target.global_position + enemy.target.velocity * diff.length() / proj.speed - enemy.global_position).normalized()
+    if enemy.target is CharacterBody2D:
+      proj.dir = (enemy.target.global_position + enemy.target.velocity * diff.length() / proj.speed - enemy.global_position).normalized()
+    else:
+      proj.dir = (enemy.target.global_position - enemy.global_position).normalized()
     proj.damage = enemy.damage
     proj.attacker = enemy
     

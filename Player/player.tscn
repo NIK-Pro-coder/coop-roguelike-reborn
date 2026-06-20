@@ -89,10 +89,10 @@ metadata/_custom_type_script = "uid://biirni03qe6i"
 unique_name_in_owner = true
 script = ExtResource("7_vtle1")
 use_hp_bar = true
-hp_bar = NodePath("../ProgressBar")
+hp_bar = NodePath("../HpBar")
 metadata/_custom_type_script = "uid://bpbk0fsb4o1i3"
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1082492863]
+[node name="HpBar" type="ProgressBar" parent="." unique_id=1082492863]
 visible = false
 offset_left = -16.0
 offset_top = 20.0

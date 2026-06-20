@@ -6,7 +6,7 @@ class_name Enemy
 @onready var state_machine: StateMachine = %StateMachine
 @onready var stat_tracker: StatTracker = %StatTracker
 
-var target: Player
+var target: Node2D
 var retarget: float = .25
 
 var speed: float = 200:
@@ -20,8 +20,9 @@ var defence: float = 0:
 
 func grab_target() -> void:
   var dist: float = -1.0
+  target = null
   
-  for i: Player in get_tree().get_nodes_in_group("player"):
+  for i: Node2D in get_tree().get_nodes_in_group("allies"):
     var d: float = i.global_position.distance_squared_to(global_position)
     
     if d < dist or dist < 0.0:

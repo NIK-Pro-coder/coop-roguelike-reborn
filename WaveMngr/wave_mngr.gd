@@ -38,13 +38,15 @@ func begin_waves(amt: int = 3) -> void:
 var wave_cooldown: float
 
 func spawn_wave() -> void:
-  var points: float = starting_points + extra_points * wave_num
+  var player_mult: float = float(len(get_tree().get_nodes_in_group("player")))
+  
+  var points: float = (starting_points + extra_points * wave_num) * player_mult
   wave_num += 1
   waves_to_spawn -= 1
   
   print("Spawned wave %s (points: %s)" % [wave_num, points])
   
-  var buff_points: float = max(0.0, points - max_value)
+  var buff_points: float = max(0.0, points - max_value * player_mult)
   points -= buff_points
   
   print(buff_points)

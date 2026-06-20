@@ -53,10 +53,14 @@ func unequip_trinket(trinket: Trinket) -> void:
       return
 
 func trinket_move() -> void:
+  if is_ghost: return
+  
   for i: Trinket in trinkets:
     i.move(self)
 
 func trinket_attack(s: Spell) -> Spell:
+  if is_ghost: return
+  
   var new_s: Spell = s
   
   for i: Trinket in trinkets:
@@ -65,22 +69,32 @@ func trinket_attack(s: Spell) -> Spell:
   return new_s
 
 func trinket_player_hit(amt: float) -> void:
+  if is_ghost: return
+  
   for i: Trinket in trinkets:
     i.player_hit(self, amt)
 
 func trinket_player_healed(amt: float) -> void:
+  if is_ghost: return
+  
   for i: Trinket in trinkets:
     i.player_healed(self, amt)
 
 func trinket_update(delta: float) -> void:
+  if is_ghost: return
+  
   for i: Trinket in trinkets:
     i.update(self, delta)
 
 func trinket_on_hit(enemy: Enemy) -> void:
+  if is_ghost: return
+  
   for i: Trinket in trinkets:
     i.on_hit(self, enemy)
 
 func trinket_on_kill(enemy: Enemy) -> void:
+  if is_ghost: return
+  
   for i: Trinket in trinkets:
     i.on_kill(self, enemy)
 
@@ -243,8 +257,9 @@ func _physics_process(delta: float) -> void:
   trinket_update(delta)
   
   handle_move(delta)
-  handle_roll(delta)
-  handle_spells(delta)
+  if !is_ghost:
+    handle_roll(delta)
+    handle_spells(delta)
   
   var last_pos: Vector2 = global_position
   move_and_slide()
@@ -253,8 +268,15 @@ func _physics_process(delta: float) -> void:
   
   hp_comp.max_hp = health
 
+func _process(_delta: float) -> void:
+  modulate.a = modulate.a * .9 + (.05 if is_ghost else .1)
+
+var is_ghost: bool = false
+
 func _on_hp_comp_died() -> void:
-  queue_free()
+  is_ghost = true
+  remove_from_group("allies")
+  hp_comp.full_heal()
 
 func _on_hp_comp_hurt(amt: float) -> void:
   trinket_player_hit(amt)

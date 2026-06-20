@@ -9,7 +9,7 @@ func expire() -> void:
   
   var exp_part: DmgHitbox = explosion_scene.instantiate()
   exp_part.global_position = global_position
-  exp_part.attacker = attacker
+  exp_part.attacker = attacker if attacker and is_instance_valid(attacker) else null
   
   if attacker is Player:
     exp_part.damage = attacker.damage * 2.5
