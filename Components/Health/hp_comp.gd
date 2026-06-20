@@ -46,24 +46,25 @@ signal died
 signal hurt(amt: float)
 signal healed(amt: float)
 
-func kill() -> void:
-  damage(max_hp)
+func kill(show_num: bool = true) -> void:
+  damage(max_hp, show_num)
 
-func full_heal() -> void:
-  damage(-max_hp)
+func full_heal(show_num: bool = true) -> void:
+  damage(-max_hp, show_num)
 
-func damage(amt: float) -> void:
+func damage(amt: float, show_num: bool = true) -> void:
   if amt == 0.0:
     return
   
   if (amt > 0.0 and hp <= 0.0) or (amt < 0.0 and hp >= max_hp):
     return
   
-  var num: DmgNumber = DmgNumber.new()
-  num.damage = amt
-  num.global_position = (get_parent() as Node2D).global_position if get_parent() is Node2D else Vector2.ZERO
-  
-  get_tree().get_root().add_child.call_deferred(num)
+  if show_num:
+    var num: DmgNumber = DmgNumber.new()
+    num.damage = amt
+    num.global_position = (get_parent() as Node2D).global_position if get_parent() is Node2D else Vector2.ZERO
+    
+    Qol.add_to_tree(num)  
 
   hp -= amt
   

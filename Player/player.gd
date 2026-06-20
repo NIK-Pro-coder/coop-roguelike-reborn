@@ -155,8 +155,6 @@ var roll_dir: Vector2 = Vector2.ZERO
 func handle_roll(delta: float) -> void:
   roll_time -= delta
   
-  hurtbox.active = roll_time <= roll_duration * .5
-  
   if !rolling:
     if roll_time > -roll_cooldown:
       return
@@ -269,14 +267,16 @@ func _physics_process(delta: float) -> void:
   hp_comp.max_hp = health
 
 func _process(_delta: float) -> void:
-  modulate.a = modulate.a * .9 + (.05 if is_ghost else .1)
+  modulate.a = 0.5 if is_ghost else 1.0
+  
+  hurtbox.active = (roll_time <= roll_duration * .5) and !is_ghost
 
 var is_ghost: bool = false
 
 func _on_hp_comp_died() -> void:
   is_ghost = true
   remove_from_group("allies")
-  hp_comp.full_heal()
+  hp_comp.full_heal(false)
 
 func _on_hp_comp_hurt(amt: float) -> void:
   trinket_player_hit(amt)
