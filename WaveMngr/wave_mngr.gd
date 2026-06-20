@@ -134,4 +134,4 @@ func _process(delta: float) -> void:
   if wave_cooldown > 0:
     return
   
-  spawn_wave()
+  await spawn_wave()

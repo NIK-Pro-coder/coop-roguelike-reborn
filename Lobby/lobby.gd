@@ -85,8 +85,11 @@ func handle_ready() -> void:
 func update_players() -> void:
   for i: int in range(len(players_joined)):
     var info: LobbyPlayerInfo = players_joined[i]
+    var f: float = float(i) / float(len(players_joined))
+    var col: Color = Color.from_ok_hsl(f, 1.0, .5)
     
     info.player_num = i + 1
+    info.color = col
     
     (player_container.get_children()[i] as LobbyPlayer).info = info
 
