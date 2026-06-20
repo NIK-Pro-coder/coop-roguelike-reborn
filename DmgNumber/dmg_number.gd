@@ -17,7 +17,7 @@ func _ready() -> void:
   
   start_y = global_position.y
   
-  text = str(abs(damage)) if damage != int(damage) else str(abs(int(damage)))
+  text = str(abs(damage)) if abs(round(damage) - damage) > 0.01 else str(abs(int(round(damage))))
   fit_content = true
   custom_minimum_size.x = 10000
   position.x -= custom_minimum_size.x / 2.0

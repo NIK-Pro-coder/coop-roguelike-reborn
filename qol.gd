@@ -3,9 +3,6 @@ extends Node
 func _ready() -> void:
   process_mode = Node.PROCESS_MODE_ALWAYS
 
-var want_to_debug: bool = true
-var is_debugging: bool = want_to_debug and OS.is_debug_build()
-
 var main_theme: Theme = load("uid://dlrj8hj0dxq8r")
 
 func find_with_criteria(from: Node, criteria: Callable) -> Node:
@@ -44,6 +41,7 @@ func add_to_tree(node: Node) -> void:
 
 var cam: MainCam = null
 var wave_mngr: WaveMngr = null
+var party_mngr: PartyMngr = null
 
 func _process(_delta: float) -> void:
   if !cam:
@@ -54,9 +52,29 @@ func _process(_delta: float) -> void:
     wave_mngr = find_with_criteria(get_tree().get_root(), func(x: Node) -> bool:
       return x is WaveMngr
     )
+  if !party_mngr:
+    party_mngr = find_with_criteria(get_tree().get_root(), func(x: Node) -> bool:
+      return x is PartyMngr
+    )
 
 func pause_game() -> void:
   get_tree().paused = true
   
 func unpause_game() -> void:
   get_tree().paused = false
+
+func get_alive_players() -> Array[Player]:
+  var alive: Array[Node] = (get_tree()
+  .get_nodes_in_group("player")
+  .filter(
+    func(x: Node) -> bool:
+      return "allies" in x.get_groups()
+  ))
+  
+  var p: Array[Player] = []
+
+  for i: Node in alive:
+    p.append(i as Player)
+  
+  return p
+  
