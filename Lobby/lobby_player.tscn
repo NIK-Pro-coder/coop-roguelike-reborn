@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ymp5dp4ufkd6" path="res://Lobby/lobby_player.gd" id="1_70q6e"]
 [ext_resource type="Theme" uid="uid://dlrj8hj0dxq8r" path="res://main_theme.tres" id="1_njril"]
+[ext_resource type="Script" uid="uid://clgollbepjq3r" path="res://Lobby/lobby_player_info.gd" id="3_f6dcb"]
+
+[sub_resource type="Resource" id="Resource_uhbtq"]
+script = ExtResource("3_f6dcb")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbm84"]
 bg_color = Color(0, 0, 0, 1)
@@ -26,8 +30,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_njril")
 script = ExtResource("1_70q6e")
+info = SubResource("Resource_uhbtq")
 
 [node name="Panel" type="Panel" parent="." unique_id=2087829958]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
