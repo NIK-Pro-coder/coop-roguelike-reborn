@@ -26,4 +26,9 @@ func request_revive(player: Player) -> void:
   lives -= 1
   print("Will revive, lives left: %s" % lives)
   
-  print(player.global_position)
+  var revive: Revive = revive_scene.instantiate()
+  
+  revive.global_position = player.global_position
+  revive.target_player = player
+  
+  Qol.add_to_tree(revive)
