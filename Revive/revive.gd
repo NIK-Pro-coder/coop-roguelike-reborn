@@ -30,3 +30,9 @@ func _process(delta: float) -> void:
   revive_progress = clamp(revive_progress, 0.0, 1.0)
   
   (circle.material as ShaderMaterial).set_shader_parameter("progress", revive_progress)
+
+  if revive_progress >= 1.0:
+    target_player.add_to_group("allies")
+    target_player.is_ghost = false
+  
+    queue_free()

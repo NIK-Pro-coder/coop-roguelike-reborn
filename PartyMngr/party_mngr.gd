@@ -1,6 +1,8 @@
 extends Node
 class_name PartyMngr
 
+@onready var lives_num: RichTextLabel = %LivesNum
+
 var revive_scene: PackedScene = preload("uid://c32emlkkofwxg")
 
 @export var lives_per_player: int = 3
@@ -10,11 +12,15 @@ var added_lives: bool = false
 
 func _process(_delta: float) -> void:
   if !added_lives:
+    lives_num.visible = len(get_tree().get_nodes_in_group("player")) > 1
+    
     lives = lives_per_player * (len(get_tree().get_nodes_in_group("player")) - 1)
     
     if lives > 0:
       added_lives = true
       print("Party lives: %s" % lives)
+  
+  lives_num.text = "Lives: %s" % lives
 
 func request_revive(player: Player) -> void:
   var alive_players: Array[Player] = Qol.get_alive_players()

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dcrb0uumxtypf"]
+
+[ext_resource type="Script" uid="uid://fdnchgk6g2" path="res://PartyMngr/party_mngr.gd" id="1_vto2u"]
+[ext_resource type="Theme" uid="uid://dlrj8hj0dxq8r" path="res://main_theme.tres" id="2_886go"]
+
+[node name="PartyMngr" type="Node" unique_id=466897949]
+script = ExtResource("1_vto2u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1289269030]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=828597739]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_886go")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=373659884]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LivesNum" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer" unique_id=977657771]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Lives: 3"

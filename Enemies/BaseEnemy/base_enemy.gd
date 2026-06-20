@@ -9,6 +9,8 @@ class_name Enemy
 var target: Node2D
 var retarget: float = .25
 
+var debug: bool = OS.is_debug_build() and false
+
 var speed: float = 200:
   get(): return speed * stat_tracker.speed_mult + stat_tracker.speed_flat
 var health: float = 100:
@@ -36,7 +38,7 @@ var move_position: Vector2
 func _ready() -> void:
   move_position = global_position
   
-  if !Qol.is_debugging:
+  if !debug:
     debug_state.queue_free()
 
 func _process(delta: float) -> void:
@@ -47,7 +49,7 @@ func _process(delta: float) -> void:
   nav_agent.target_position = move_position
   nav_agent.max_speed = speed / 16.0
   
-  if Qol.is_debugging:
+  if debug:
     var state_name: String = "Skibidi"
     
     for i: String in state_machine.states:

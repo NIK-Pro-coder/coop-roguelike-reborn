@@ -13,6 +13,7 @@ void fragment() {
   float dist = sqrt((pow(UV.x - .5, 2) + pow(UV.y - .5, 2)) * 2.0);
   
   COLOR.a = 0.0;
+  COLOR.rgb = vec3(0.0, 0.25, 0.75);
   
   if (dist >= .66 && dist <= .68){
     COLOR.a = 0.25;
