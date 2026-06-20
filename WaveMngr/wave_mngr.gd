@@ -99,7 +99,7 @@ func _ready() -> void:
   wave_cooldown = grace_period * 2
 
 func _process(delta: float) -> void:
-  if waves_to_spawn > 0:
+  if waves_to_spawn > 0 or len(enemies_spawned) > 0:
     wave_text.visible = true
     wave_cd.visible = true
     wave_text.text = "- Wave %s -" % (wave_num if len(enemies_spawned) > 0 else wave_num + 1)

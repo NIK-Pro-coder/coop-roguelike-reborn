@@ -69,7 +69,10 @@ func _physics_process(delta: float) -> void:
   
   nav_agent.set_velocity(new_vel)
   
-  velocity = velocity * .9 + target_vel * .1
+  if !test_move(transform, Vector2(0, 0)):
+    velocity = velocity * .9 + target_vel * .1
+  else:
+    velocity = Vector2.ZERO
   move_and_slide()
 
 func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
