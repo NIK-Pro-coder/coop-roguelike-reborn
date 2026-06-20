@@ -93,6 +93,7 @@ hp_bar = NodePath("../ProgressBar")
 metadata/_custom_type_script = "uid://bpbk0fsb4o1i3"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1082492863]
+visible = false
 offset_left = -16.0
 offset_top = 20.0
 offset_right = 16.0
@@ -101,6 +102,7 @@ value = 99.96
 show_percentage = false
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=909078742]
+unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("8_od3ui")

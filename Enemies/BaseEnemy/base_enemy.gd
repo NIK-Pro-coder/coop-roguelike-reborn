@@ -83,5 +83,5 @@ func died() -> void:
 var kill_credit: Player = null
 
 func _on_hurtbox_got_hit(from: Hitbox) -> void:
-  if from.attacker is Player:
+  if from.attacker and from.attacker is Player:
     kill_credit = from.attacker

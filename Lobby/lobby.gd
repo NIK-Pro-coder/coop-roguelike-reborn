@@ -108,7 +108,7 @@ func handle_start(delta: float) -> void:
   
   if can_start:
     if !is_starting:
-      start_time = 5
+      start_time = 3
       is_starting = true
       
     start_time -= delta

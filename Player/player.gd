@@ -5,6 +5,7 @@ class_name Player
 @onready var anim: AnimationPlayer = %Anim
 @onready var spell_selected_txt: RichTextLabel = %SpellSelectedTxt
 @onready var hp_comp: HpComp = %HpComp
+@onready var hurtbox: Hurtbox = %Hurtbox
 
 @export var device: int = -1
 
@@ -139,6 +140,8 @@ var roll_dir: Vector2 = Vector2.ZERO
 
 func handle_roll(delta: float) -> void:
   roll_time -= delta
+  
+  hurtbox.active = roll_time <= roll_duration * .5
   
   if !rolling:
     if roll_time > -roll_cooldown:

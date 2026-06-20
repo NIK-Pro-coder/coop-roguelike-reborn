@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
   (shape.shape as RectangleShape2D).size = size
   
   for i: Hurtbox in get_overlapping_areas():
-    if not iframe_group in i.iframes or i.iframes[iframe_group] <= 0 :
+    if i.active and (not iframe_group in i.iframes or i.iframes[iframe_group] <= 0) :
       i.hit(self)
       hit.emit(i)
       
