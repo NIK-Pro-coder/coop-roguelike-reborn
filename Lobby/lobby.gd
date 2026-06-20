@@ -15,6 +15,7 @@ var joycons: Array[int] = []
 
 func handle_joycons() -> void:
   var connected: Array[int] = Input.get_connected_joypads()
+  connected.append(-1)
   
   for i: int in connected:
     if !i in joycons:
@@ -98,14 +99,7 @@ func update_players() -> void:
 var start_time: float = 0.0
 var is_starting: bool = false
 
-func _process(delta: float) -> void:
-  handle_joycons()
-  handle_join()
-  handle_leave()
-  handle_ready()
-  
-  update_players()
-  
+func handle_start(delta: float) -> void:
   var can_start: bool = len(players_joined) > 0
   for i: LobbyPlayerInfo in players_joined:
     if !i.is_ready:
@@ -135,3 +129,13 @@ func _process(delta: float) -> void:
     Qol.unpause_game()
     queue_free()
     Qol.wave_mngr.begin_waves(20)
+
+func _process(delta: float) -> void:
+  handle_joycons()
+  handle_join()
+  handle_leave()
+  handle_ready()
+  
+  update_players()
+  
+  handle_start(delta)
