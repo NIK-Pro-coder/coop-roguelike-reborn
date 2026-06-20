@@ -1,6 +1,8 @@
 extends Node
 class_name PartyMngr
 
+var revive_scene: PackedScene = preload("uid://c32emlkkofwxg")
+
 @export var lives_per_player: int = 3
 
 var lives: int = 0
