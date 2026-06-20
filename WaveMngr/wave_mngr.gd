@@ -13,7 +13,7 @@ class_name WaveMngr
 ## The time to wait after a wave before spawning the next
 @export_range(0.0, 5.0, 0.1, "or_greater", "suffix:s") var grace_period: float = 2.5
 ## The maximum point value to spawn before starting to buff enemies
-@export var max_value: float = 5.0
+@export var max_value: float = 10.0
 @export var buff_cost: float = 1
 
 @export var spawn_around: Vector2 = Vector2.ZERO
@@ -80,17 +80,13 @@ func spawn_wave() -> void:
       var r: int = randi_range(0, 3)
       
       if r == 0:
-        i.stat_tracker.add_mult_hp_change(5)
-        print("+hp")
+        i.stat_tracker.add_mult_hp_change(10)
       elif r == 1:
-        i.stat_tracker.add_mult_def_change(5)
-        print("+def")
+        i.stat_tracker.add_mult_def_change(10)
       elif r == 2:
-        i.stat_tracker.add_mult_dmg_change(5)
-        print("+dmg")
+        i.stat_tracker.add_mult_dmg_change(10)
       elif r == 3:
-        i.stat_tracker.add_mult_spd_change(5)
-        print("+spd")
+        i.stat_tracker.add_mult_spd_change(10)
       
       buff_points -= buff_cost
       
