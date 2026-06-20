@@ -11,6 +11,8 @@ func _ready() -> void:
 var max_dist: float = 240.0
 var revive_progress: float = 0.0
 
+# TODO: Make revive fasteer when more players are in the area
+
 func _process(delta: float) -> void:
   if len(Qol.get_alive_players()) == 0:
     queue_free()

@@ -9,6 +9,8 @@ class_name Player
 
 @export var device: int = -1
 
+# TODO: Make hp visible on the HUD
+
 func _ready() -> void:
   var new_sp: Array[Spell] = []
   for i: Spell in spells:
