@@ -59,7 +59,7 @@ func trinket_move() -> void:
     i.move(self)
 
 func trinket_attack(s: Spell) -> Spell:
-  if is_ghost: return
+  if is_ghost: return s
   
   var new_s: Spell = s
   
@@ -255,9 +255,9 @@ func _physics_process(delta: float) -> void:
   trinket_update(delta)
   
   handle_move(delta)
+  handle_spells(delta)
   if !is_ghost:
     handle_roll(delta)
-    handle_spells(delta)
   
   var last_pos: Vector2 = global_position
   move_and_slide()
@@ -272,13 +272,21 @@ func _process(_delta: float) -> void:
   hurtbox.active = (roll_time <= roll_duration * .5) and !is_ghost
 
 var is_ghost: bool = false
+var ghost_debuff_handle: String = ""
 
 func _on_hp_comp_died() -> void:
   is_ghost = true
   remove_from_group("allies")
   hp_comp.full_heal(false)
+  hurtbox.active = false
+  ghost_debuff_handle = stat_tracker.add_mult_dmg_change(-80)
   
   Qol.party_mngr.request_revive(self)
+
+func revive() -> void:
+  add_to_group("allies")
+  is_ghost = false
+  stat_tracker.cancel_stat_change(ghost_debuff_handle)
 
 func _on_hp_comp_hurt(amt: float) -> void:
   trinket_player_hit(amt)

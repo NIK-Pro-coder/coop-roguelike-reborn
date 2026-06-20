@@ -13,6 +13,9 @@ var max_dist: float = 240.0
 var revive_progress: float = 0.0
 
 func _process(delta: float) -> void:
+  if len(Qol.get_alive_players()) == 0:
+    queue_free()
+  
   chain.points = [Vector2.ZERO, target_player.global_position - global_position]
   
   var diff: Vector2 = (target_player.global_position - global_position)
@@ -32,7 +35,6 @@ func _process(delta: float) -> void:
   (circle.material as ShaderMaterial).set_shader_parameter("progress", revive_progress)
 
   if revive_progress >= 1.0:
-    target_player.add_to_group("allies")
-    target_player.is_ghost = false
+    target_player.revive()
   
     queue_free()
